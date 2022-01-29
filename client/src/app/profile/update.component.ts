@@ -1,13 +1,20 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
+import { HttpClient } from '@angular/common/http';
+
 import { AccountService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
 
+import * as _ from 'lodash';
+
 @Component({ templateUrl: 'update.component.html' })
 export class UpdateComponent implements OnInit {
+
+    @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
+    fileInputLabel: string;
     account = this.accountService.accountValue;
     form: FormGroup;
     loading = false;
@@ -15,6 +22,7 @@ export class UpdateComponent implements OnInit {
     deleting = false;
 
     constructor(
+        private http: HttpClient,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -29,16 +37,49 @@ export class UpdateComponent implements OnInit {
             lastName: [this.account.lastName, Validators.required],
             email: [this.account.email, [Validators.required, Validators.email]],
             password: ['', [Validators.minLength(6)]],
-            confirmPassword: ['']
+            confirmPassword: [''],
+            uploadedImage: ['']
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.form.controls; }
+    get f() { 
+        return this.form.controls; 
+    }
+
+    onFileSelect(event) {
+        const file = event.target.files[0];
+        this.fileInputLabel = file.name;
+        this.form.get('uploadedImage').setValue(file);
+    }
 
     onSubmit() {
+        debugger;
+        if (!this.form.get('uploadedImage').value) {
+            alert('Please select an image to upload!');
+            return false;
+          }
+      
+          const formData = new FormData();
+          formData.append('uploadedImage', this.form.get('uploadedImage').value);
+          formData.append('agentId', '007');
+      
+      
+          this.http
+            .post<any>('http://localhost:4000/uploadedImages', formData).subscribe(response => {
+              console.log(response);
+              if (response.statusCode === 200) {
+                // Reset the file input
+                this.uploadFileInput.nativeElement.value = "";
+                this.fileInputLabel = undefined;
+              }
+            }, er => {
+              console.log(er);
+              alert(er.error.error);
+            });
+        
         this.submitted = true;
 
         // reset alerts on submit
@@ -62,6 +103,7 @@ export class UpdateComponent implements OnInit {
                     this.loading = false;
                 }
             });
+        debugger;
     }
 
     onDelete() {
