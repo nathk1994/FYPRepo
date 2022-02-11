@@ -18,10 +18,12 @@ async function initialize() {
     // init models and add them to the exported db object
     db.Account = require('../accounts/account.model')(sequelize);
     db.RefreshToken = require('../accounts/refresh-token.model')(sequelize);
+    db.LabSwap = require('../lab-swaps/lab-swap.model')(sequelize);
 
     // define relationships
     db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
     db.RefreshToken.belongsTo(db.Account);
+    //db.LabSwap.hasMany({ onDelete: 'CASCADE' }); // was causing server crash on boot due to undefined relationship
     
     // sync all models with database
     await sequelize.sync();

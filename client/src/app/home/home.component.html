@@ -1,6 +1,37 @@
 ﻿<div class="p-4">
     <div class="container">
         <h1>Welcome {{account.firstName}}!</h1>
+        <h2>You can create a lab swap request here!</h2>
         <!-- <p></p> -->
     </div>
 </div>
+
+<form [formGroup]="labSwapForm" (ngSubmit)="onSubmit()">
+    <div class="form-group col-4">
+        <label>Your Full Name</label>
+        <input type="text" formControlName="swapCandidateOne" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
+        <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
+            <div *ngIf="f.swapCandidateOne.errors.required">Full Name is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-4">
+        <label>Lab Swap Request Details</label>
+        <input type="text" formControlName="swapRequestDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+        <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+            <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" [disabled]="loading" class="btn btn-primary mr-2 mb-3 ml-3">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Create Lab Swap Request
+        </button>
+        <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
+            <span *ngIf="deleting" class="spinner-border spinner-border-sm mr-1"></span>
+            Delete
+        </button>
+        <a routerLink="../" href="" class="btn btn-link">Cancel</a> -->
+    </div>
+</form>

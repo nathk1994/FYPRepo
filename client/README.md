@@ -1,2 +1,4 @@
 # FYPprojrepo
-Final Year Project Repository - Task Management Application
+Final Year Project Repository
+
+Front-End (Client)

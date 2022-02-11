@@ -1,4 +1,7 @@
-# node-mysql-signup-verification-api
+# FYPprojrepo
+Final Year Project Repository
+
+Back-End (Server)
 
 NodeJS + MySQL - Boilerplate API with Email Sign Up, Verification, Authentication & Forgot Password
 
