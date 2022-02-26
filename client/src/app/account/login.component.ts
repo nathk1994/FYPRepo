@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) { }
 
-    // tslint:disable-next-line: typedef
     ngOnInit() {
         this.form = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -28,10 +27,8 @@ export class LoginComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    // tslint:disable-next-line: typedef
     get f() { return this.form.controls; }
 
-    // tslint:disable-next-line: typedef
     onSubmit() {
         this.submitted = true;
 
@@ -49,7 +46,6 @@ export class LoginComponent implements OnInit {
             .subscribe({
                 next: () => {
                     // get return url from query parameters or default to lab-swap-home page
-                    // tslint:disable-next-line: no-string-literal
                     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
                     this.router.navigateByUrl(returnUrl);
                 },
