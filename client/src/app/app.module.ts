@@ -4,12 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
+// import { fakeBackendProvider } from './_helpers';
 
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
 import { AccountService } from './_services';
-import { LabSwapService } from './_services'; //new
+import { LabSwapService } from './_services'; // new
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { LabSwapHomeComponent } from './lab-swap-home';
@@ -27,12 +27,13 @@ import { LabSwapHomeComponent } from './lab-swap-home';
         LabSwapHomeComponent
     ],
     providers: [
+        // tslint:disable-next-line: max-line-length
         { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService, LabSwapService] }, // is LabSwapService Required?
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        //fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

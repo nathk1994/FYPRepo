@@ -10,22 +10,27 @@ const baseUrl = `${environment.apiUrl}/lab-swaps`;
 export class LabSwapService {
     constructor(private http: HttpClient) { }
 
+    // tslint:disable-next-line: typedef
     getAll() {
         return this.http.get<LabSwap[]>(baseUrl);
     }
 
+    // tslint:disable-next-line: typedef
     getById(id: string) {
         return this.http.get<LabSwap>(`${baseUrl}/${id}`);
     }
 
+    // tslint:disable-next-line: typedef
     create(params: any) {
         return this.http.post(baseUrl, params);
     }
 
+    // tslint:disable-next-line: typedef
     update(id: string, params: any) {
         return this.http.put(`${baseUrl}/${id}`, params);
     }
 
+    // tslint:disable-next-line: typedef
     delete(id: string) {
         return this.http.delete(`${baseUrl}/${id}`);
     }
@@ -93,11 +98,11 @@ export class LabSwapService {
 //     getById(id: string) {
 //         return this.http.get<LabSwap>(`${baseUrl}/${id}`);
 //     }
-    
+
 //     create(params) {
 //         return this.http.post(baseUrl, params);
 //     }
-    
+
 //     update(id, params) {
 //         return this.http.put(`${baseUrl}/${id}`, params)
 //             .pipe(map((labSwap: any) => {
@@ -110,7 +115,7 @@ export class LabSwapService {
 //                 return labSwap;
 //             }));
 //     }
-    
+
 //     // delete(id: string) {
 //     //     return this.http.delete(`${baseUrl}/${id}`)
 //     //         .pipe(finalize(() => {

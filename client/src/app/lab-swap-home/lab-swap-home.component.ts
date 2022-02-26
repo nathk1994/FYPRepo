@@ -24,23 +24,25 @@ export class LabSwapHomeComponent implements OnInit {
         private alertService: AlertService
     ) {}
 
+    // tslint:disable-next-line: typedef
     ngOnInit() {
+        // tslint:disable-next-line: no-string-literal
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
-        
+
         // password not required in edit mode
         const passwordValidators = [Validators.minLength(6)];
         if (this.isAddMode) {
             passwordValidators.push(Validators.required);
         }
 
-        //const formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmPassword') };
+        // const formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmPassword') };
         this.labSwapForm = this.formBuilder.group({
             swapCandidateOne: ['', Validators.required],
             swapRequestDetail: ['', Validators.required],
-            //password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
-            //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
-        }); //formOptions
+            // password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
+            // confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
+        }); // formOptions
 
         if (!this.isAddMode) {
             this.labSwapService.getById(this.id)
@@ -50,8 +52,10 @@ export class LabSwapHomeComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
+    // tslint:disable-next-line: typedef
     get f() { return this.labSwapForm.controls; }
 
+    // tslint:disable-next-line: typedef
     onSubmit() {
         this.submitted = true;
 
@@ -71,6 +75,7 @@ export class LabSwapHomeComponent implements OnInit {
         }
     }
 
+    // tslint:disable-next-line: typedef
     private createLabSwap() {
         this.labSwapService.create(this.labSwapForm.value)
             .pipe(first())
@@ -81,6 +86,7 @@ export class LabSwapHomeComponent implements OnInit {
             .add(() => this.loading = false);
     }
 
+    // tslint:disable-next-line: typedef
     private updateLabSwap() {
         this.labSwapService.update(this.id, this.labSwapForm.value)
             .pipe(first())
@@ -126,8 +132,8 @@ export class LabSwapHomeComponent implements OnInit {
 //         });
 //     }
 
-//     get f() { 
-//         return this.labSwapForm.controls; 
+//     get f() {
+//         return this.labSwapForm.controls;
 //     }
 
 //     onSubmit() {
