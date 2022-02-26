@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home';
+import { LabSwapHomeComponent } from './lab-swap-home';
 import { AuthGuard } from './_helpers';
 import { Role } from './_models';
 
@@ -10,12 +10,12 @@ const adminModule = () => import('./admin/admin.module').then(x => x.AdminModule
 const profileModule = () => import('./profile/profile.module').then(x => x.ProfileModule);
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: LabSwapHomeComponent, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
     { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
     { path: 'admin', loadChildren: adminModule, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
 
-    // otherwise redirect to home
+    // otherwise redirect to lab-swap-home
     { path: '**', redirectTo: '' }
 ];
 

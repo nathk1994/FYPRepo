@@ -42,7 +42,7 @@ export class LabSwapService {
 
 // //const baseUrl = `${environment.apiUrl}/accounts`;
 // const baseUrl = `${environment.apiUrl}/lab-swaps`;
-// //const baseUrl = `${environment.apiUrl}/home`;
+// //const baseUrl = `${environment.apiUrl}/lab-swap-home`;
 
 // @Injectable({ providedIn: 'root' })
 // export class LabSwapService {

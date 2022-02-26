@@ -6,8 +6,8 @@ import { first } from 'rxjs/operators';
 import { AccountService, LabSwapService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
 
-@Component({ templateUrl: 'home.component.html' })
-export class HomeComponent implements OnInit {
+@Component({ templateUrl: 'lab-swap-home.component.html' })
+export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
     labSwapForm!: FormGroup;
     id!: string;
@@ -99,8 +99,8 @@ export class HomeComponent implements OnInit {
 // import { first } from 'rxjs/operators';
 
 
-// @Component({ templateUrl: 'home.component.html' })
-// export class HomeComponent {
+// @Component({ templateUrl: 'lab-swap-home.component.html' })
+// export class LabSwapHomeComponent {
 //     account = this.accountService.accountValue;
 //     labSwap = this.labSwapService.labSwapValue;
 //     loading = false;

@@ -12,7 +12,7 @@ import { AccountService } from './_services';
 import { LabSwapService } from './_services'; //new
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';
+import { LabSwapHomeComponent } from './lab-swap-home';
 
 @NgModule({
     imports: [
@@ -24,7 +24,7 @@ import { HomeComponent } from './home';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent
+        LabSwapHomeComponent
     ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService, LabSwapService] }, // is LabSwapService Required?
