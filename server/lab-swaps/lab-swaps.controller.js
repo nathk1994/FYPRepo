@@ -179,7 +179,7 @@ function getLabSwapById(req, res, next) {
 }
 
 // function getLabSwapById(req, res, next) {
-//     // users can get their own account and admins can get any account
+//     // users can get their own Lab Swap and admins can get any Lab Swap
 //     if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
 //         return res.status(401).json({ message: 'Unauthorized' });
 //     }

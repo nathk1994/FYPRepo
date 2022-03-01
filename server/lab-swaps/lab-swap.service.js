@@ -19,7 +19,7 @@ module.exports = {
 };
 
 async function getAllLabSwaps() {
-    return await db.User.findAll();
+    return await db.LabSwap.findAll();
 }
 
 async function getLabSwapById(id) {

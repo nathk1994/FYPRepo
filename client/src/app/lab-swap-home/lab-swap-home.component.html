@@ -35,3 +35,46 @@
         <a routerLink="../" href="" class="btn btn-link">Cancel</a> -->
     </div>
 </form>
+
+<hr class="rounded">
+
+<h1>Current Lab Swaps</h1>
+<p>List of Open Lab Swap Requests:</p>
+<a routerLink="add" class="btn btn-sm btn-success ml-3 mb-2">Create Lab Swap Request</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <!-- <th style="width:30%">Name</th> -->
+            <!-- <th style="width:30%">Email</th> -->
+            <th style="width:30%">Swap Request Detail</th>
+            <!-- <th style="width:30%">Role</th> -->
+            <!-- <th style="width:30%">Action</th> -->
+            <th style="width:10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let labSwap of labSwaps">
+        <!-- <tr *ngFor="let account of accounts"> -->
+            <!-- <td>{{account.title}} {{account.firstName}} {{account.lastName}}</td> -->
+            <!-- <td>{{account.email}}</td> -->
+
+            <!-- <td>{{labSwaps.swapCandidateOne}}</td> -->
+            <!-- <td>{{labSwaps.swapRequestDetail}}</td> -->
+            <td>{{labSwap.swapRequestDetail}}</td>
+            <!-- <td>{{account.role}}</td> -->
+            <td style="white-space: nowrap">
+                <!-- <a routerLink="edit/{{labSwap.id}}" class="btn btn-sm btn-primary mr-1">Edit Request</a> -->
+                <!-- <button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
+                    <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!account.isDeleting">Delete</span>
+                </button> -->
+            </td>
+        <!-- </tr> -->
+        <tr *ngIf="!labSwaps">
+        <!-- <tr *ngIf="!accounts"> -->
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

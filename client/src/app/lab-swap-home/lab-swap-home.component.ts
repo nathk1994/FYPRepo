@@ -5,15 +5,22 @@ import { first } from 'rxjs/operators';
 
 import { AccountService, LabSwapService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
+import { LabSwap } from '@app/_models/labSwap';
 
-@Component({ templateUrl: 'lab-swap-home.component.html' })
+@Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
+    //labSwap = this.labSwapService.labSwapValue;
+    labSwap: LabSwap;
     labSwapForm!: FormGroup;
     id!: string;
     isAddMode!: boolean;
     loading = false;
     submitted = false;
+    labSwaps: any[];
+    accounts: any[];
+    currentLabSwap = null;
+    //labSwap?: LabSwap[];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -24,9 +31,30 @@ export class LabSwapHomeComponent implements OnInit {
         private alertService: AlertService
     ) {}
 
-    ngOnInit() {
+    ngOnInit() { // void?
+        this.retrieveAccounts();
+        this.retrieveLabSwaps();
+        // this.getLabSwap(this.route.snapshot.paramMap.get('id'));
+        // this.labSwapService.getAll()
+        // .subscribe(
+        //   data => {
+        //     this.labSwaps = data;
+        //     console.log(data);
+        //   },
+        //   error => {
+        //     console.log(error);
+        // });
+
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
+        this.accountService.getAll()
+            .pipe(first())
+            .subscribe(accounts => this.accounts = accounts);
+
+        // this.labSwapService.getAll()
+        //     .pipe(first())
+        //     .subscribe(labSwaps => this.labSwaps = labSwaps);
+        
         
         // password not required in edit mode
         const passwordValidators = [Validators.minLength(6)];
@@ -47,6 +75,30 @@ export class LabSwapHomeComponent implements OnInit {
                 .pipe(first())
                 .subscribe(x => this.labSwapForm.patchValue(x));
         }
+    }
+
+    retrieveLabSwaps(): void {
+        this.labSwapService.getAll()
+          .subscribe(
+            data => {
+              this.labSwaps = data;
+              console.log(data);
+            },
+            error => {
+              console.log(error);
+            });
+    }
+
+    retrieveAccounts(): void {
+        this.accountService.getAll()
+          .subscribe(
+            data => {
+              this.accounts = data;
+              console.log(data);
+            },
+            error => {
+              console.log(error);
+            });
     }
 
     // convenience getter for easy access to form fields

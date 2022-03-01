@@ -3,12 +3,18 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
 import { LabSwap } from '@app/_models';
+// import { BehaviorSubject } from 'rxjs';
 
 const baseUrl = `${environment.apiUrl}/lab-swaps`;
 
 @Injectable({ providedIn: 'root' })
 export class LabSwapService {
     constructor(private http: HttpClient) { }
+    // private labSwapSubject: BehaviorSubject<LabSwap>;
+
+    // public get labSwapValue(): LabSwap {
+    //     return this.labSwapSubject.value;
+    // }
 
     getAll() {
         return this.http.get<LabSwap[]>(baseUrl);
