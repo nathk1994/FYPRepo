@@ -2,14 +2,10 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+// import { MustMatch } from '@app/_helpers';
 import { AccountService, LabSwapService, AlertService } from '@app/_services';
-import { MustMatch } from '@app/_helpers';
 import { LabSwap } from '@app/_models/labSwap';
-
-//import { DialogComponent } from './lab-swap-create-model/lab-swap-create-model.component'; - Does not work, use import below
-import { DialogComponent } from '@app/lab-swap-create-model/lab-swap-create-model.component';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ModalService } from '../_modal';
 
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
@@ -27,7 +23,7 @@ export class LabSwapHomeComponent implements OnInit {
     //labSwap?: LabSwap[];
 
     constructor(
-        private dialog: MatDialog,
+        public modalService: ModalService,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -62,10 +58,10 @@ export class LabSwapHomeComponent implements OnInit {
         
         
         // password not required in edit mode
-        const passwordValidators = [Validators.minLength(6)];
-        if (this.isAddMode) {
-            passwordValidators.push(Validators.required);
-        }
+        // const passwordValidators = [Validators.minLength(6)];
+        // if (this.isAddMode) {
+        //     passwordValidators.push(Validators.required);
+        // }
 
         //const formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmPassword') };
         this.labSwapForm = this.formBuilder.group({
@@ -75,17 +71,19 @@ export class LabSwapHomeComponent implements OnInit {
             //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
         }); //formOptions
 
-        if (!this.isAddMode) {
+        if (!this.isAddMode) { // (!this.isAddMode)
             this.labSwapService.getById(this.id)
                 .pipe(first())
                 .subscribe(x => this.labSwapForm.patchValue(x));
         }
     }
 
-    openDialog() {
-        this.dialog.open(DialogComponent, {
-            width: '30%'
-        });
+    openModal(id: string) {
+        this.modalService.open(id);
+    }
+
+    public closeModal(id: string) {
+        this.modalService.close(id);
     }
 
     retrieveLabSwaps(): void {
@@ -132,6 +130,8 @@ export class LabSwapHomeComponent implements OnInit {
         } else {
             this.updateLabSwap();
         }
+
+        this.modalService.close; // investigate, not working
     }
 
     private createLabSwap() {

@@ -2,18 +2,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
+import { AccountService } from './_services';
+// import { LabSwapService } from './_services'; //new
+import { AppComponent } from './app.component';
+import { AlertComponent } from './_components';
+import { LabSwapHomeComponent } from './lab-swap-home';
+import { ModalModule } from './_modal';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
 
-import { AppRoutingModule } from './app-routing.module';
-import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
-import { AccountService } from './_services';
-import { LabSwapService } from './_services'; //new
-import { AppComponent } from './app.component';
-import { AlertComponent } from './_components';
-import { LabSwapHomeComponent } from './lab-swap-home';
-import {MatDialogModule} from '@angular/material/dialog';
+
 
 @NgModule({
     imports: [
@@ -21,15 +22,17 @@ import {MatDialogModule} from '@angular/material/dialog';
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
-        MatDialogModule
+        ModalModule,
     ],
+
     declarations: [
         AppComponent,
         AlertComponent,
         LabSwapHomeComponent
     ],
+
     providers: [
-        { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService, LabSwapService] }, // is LabSwapService Required?
+        { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
