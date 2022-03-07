@@ -7,6 +7,10 @@ import { AccountService, LabSwapService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
 import { LabSwap } from '@app/_models/labSwap';
 
+//import { DialogComponent } from './lab-swap-create-model/lab-swap-create-model.component'; - Does not work, use import below
+import { DialogComponent } from '@app/lab-swap-create-model/lab-swap-create-model.component';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
@@ -23,6 +27,7 @@ export class LabSwapHomeComponent implements OnInit {
     //labSwap?: LabSwap[];
 
     constructor(
+        private dialog: MatDialog,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -77,6 +82,12 @@ export class LabSwapHomeComponent implements OnInit {
         }
     }
 
+    openDialog() {
+        this.dialog.open(DialogComponent, {
+            width: '30%'
+        });
+    }
+
     retrieveLabSwaps(): void {
         this.labSwapService.getAll()
           .subscribe(
@@ -101,7 +112,7 @@ export class LabSwapHomeComponent implements OnInit {
             });
     }
 
-    // convenience getter for easy access to form fields
+    // convenience getter, for easy access to form fields
     get f() { return this.labSwapForm.controls; }
 
     onSubmit() {

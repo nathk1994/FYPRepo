@@ -13,13 +13,15 @@ import { LabSwapService } from './_services'; //new
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { LabSwapHomeComponent } from './lab-swap-home';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        MatDialogModule
     ],
     declarations: [
         AppComponent,
