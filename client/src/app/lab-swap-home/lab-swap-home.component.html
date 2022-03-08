@@ -59,6 +59,7 @@
 <nk-modal id="custom-modal-1">
     <form [formGroup]="labSwapForm">
         <div class="form-group col-4">
+            <h1>Testing</h1>
             <label>Your Full Name</label>
             <input type="text" formControlName="swapCandidateOne" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
             <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
@@ -69,6 +70,49 @@
         <div class="form-group col-4">
             <label>Lab Swap Request Details</label>
             <input type="text" formControlName="swapRequestDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+            <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+            </div>
+        </div>
+
+        <hr class="rounded">
+
+        <div class="form-group col-4">
+            <h1>Latest</h1>
+            <label>Lab Module Name</label>
+            <input type="text" formControlName="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
+            <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
+                <div *ngIf="f.swapCandidateOne.errors.required">Full Name is required</div>
+            </div>
+        </div>
+    
+        <div class="form-group col-4">
+            <label>Lab Date</label>
+            <input type="text" formControlName="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+            <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-4">
+            <label>Lab Time</label>
+            <input type="text" formControlName="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+            <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-4">
+            <label>Class Group</label>
+            <input type="text" formControlName="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+            <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-4">
+            <label>No. Of Available Lab Slots</label>
+            <input type="text" formControlName="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
             <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
                 <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
             </div>
