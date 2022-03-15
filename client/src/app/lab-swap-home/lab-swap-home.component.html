@@ -7,7 +7,7 @@
 </div>
 
 <!-- Button for Lecturer to open modal -->
-<button (click)="openModal('custom-modal-1')" class="btn btn-primary mr-2 mb-3 ml-3" >Create available lab slots</button>
+<button (click)="openModal('custom-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary mr-2 mb-3 ml-3" >Create available lab slots</button> <!-- *ngIf="isLecturer === true" -->
 
 <!-- <a routerLink="../" href="" class="btn btn-link">Cancel</a> -->
 

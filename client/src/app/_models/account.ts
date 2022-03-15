@@ -8,4 +8,5 @@ export class Account {
     email: string;
     role: Role;
     jwtToken?: string;
+    isLecturer?: boolean;
 }

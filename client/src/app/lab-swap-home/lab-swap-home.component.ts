@@ -6,11 +6,13 @@ import { first } from 'rxjs/operators';
 import { AccountService, LabSwapService, AlertService } from '@app/_services';
 import { LabSwap } from '@app/_models/labSwap';
 import { ModalService } from '../_modal';
+import { Account } from '@app/_models/account';
 
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
     //labSwap = this.labSwapService.labSwapValue;
+    isLecturer: boolean = false
     labSwap: LabSwap;
     labSwapForm!: FormGroup;
     id!: string;
@@ -76,6 +78,27 @@ export class LabSwapHomeComponent implements OnInit {
                 .pipe(first())
                 .subscribe(x => this.labSwapForm.patchValue(x));
         }
+
+        this.isTestEmail();
+    }
+
+    //trying to implment the check here instead, and then set this.isLecturer = true;
+    public isTestEmail() { 
+
+        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // if(re.test(email)){
+            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
+            if(this.account.email.indexOf("@hotmail.com", this.account.email.length - "@hotmail.com".length) !== -1){
+                //VALID
+                console.log("TEST EMAIL VALID");
+                //this.form.controls.isLecturer.patchValue('1'); // Intended way.
+                this.isLecturer = true; // optional way, working!
+            }
+            else{
+                console.log("TEST EMAIL INVALID");
+            }
+
+        //}
     }
 
     openModal(id: string) {
@@ -131,6 +154,7 @@ export class LabSwapHomeComponent implements OnInit {
             this.updateLabSwap();
         }
 
+       // this.router.navigate(['../lab-swap-home'], { relativeTo: this.route });
         this.modalService.close; // investigate, not working
     }
 
