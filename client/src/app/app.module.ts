@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { LabSwapHomeComponent } from './lab-swap-home';
 import { ModalModule } from './_modal';
+//import { ModalComponent } from './_modal/modal.component';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
@@ -23,11 +24,13 @@ import { ModalModule } from './_modal';
         HttpClientModule,
         AppRoutingModule,
         ModalModule,
+        //LabSwapHomeComponent
     ],
 
     declarations: [
         AppComponent,
         AlertComponent,
+        //ModalComponent,
         LabSwapHomeComponent
     ],
 

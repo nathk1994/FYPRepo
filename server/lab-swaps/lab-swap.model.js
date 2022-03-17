@@ -11,6 +11,11 @@ function model(sequelize) {
         isSwapComplete: { type: DataTypes.BOOLEAN },
         //firstName: { type: DataTypes.STRING, allowNull: false },
         //lastName: { type: DataTypes.STRING, allowNull: false },
+        labName: { type: DataTypes.STRING, allowNull: true },
+        labDate: { type: DataTypes.STRING, allowNull: true },
+        labTime: { type: DataTypes.STRING, allowNull: true },
+        classGroup: { type: DataTypes.STRING, allowNull: true },
+        availableLabSlotsNumber: { type: DataTypes.INTEGER, allowNull: true },
         created: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
         updated: { type: DataTypes.DATE },
 

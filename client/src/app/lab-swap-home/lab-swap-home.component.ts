@@ -22,6 +22,7 @@ export class LabSwapHomeComponent implements OnInit {
     labSwaps: any[];
     accounts: any[];
     currentLabSwap = null;
+    isDeleting;
     //labSwap?: LabSwap[];
 
     constructor(
@@ -67,8 +68,13 @@ export class LabSwapHomeComponent implements OnInit {
 
         //const formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmPassword') };
         this.labSwapForm = this.formBuilder.group({
-            swapCandidateOne: ['', Validators.required],
-            swapRequestDetail: ['', Validators.required],
+            // swapCandidateOne: ['', Validators.required],
+            // swapRequestDetail: ['', Validators.required],
+            labName: ['', Validators.required],
+            labDate: ['', Validators.required],
+            labTime: ['', Validators.required],
+            classGroup: ['', Validators.required],
+            availableLabSlotsNumber: ['', Validators.required],
             //password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
             //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
         }); //formOptions
@@ -130,6 +136,16 @@ export class LabSwapHomeComponent implements OnInit {
             },
             error => {
               console.log(error);
+            });
+    }
+
+    public deleteLabSwap(id: string) {
+        const labSwap = this.labSwaps.find(x => x.id === id);
+        labSwap.isDeleting = true;
+        this.labSwapService.delete(id)
+            .pipe(first())
+            .subscribe(() => {
+                this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
             });
     }
 
