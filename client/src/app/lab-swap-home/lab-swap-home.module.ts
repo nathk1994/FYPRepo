@@ -6,6 +6,7 @@
 // import { LayoutComponent } from './layout.component';
 // import { LabSwapHomeComponent } from './lab-swap-home.component';
 // import { ModalComponent } from '@app/_modal/modal.component';
+// import { LabSwapHomeEditComponent } from './lab-swap-home-edit.component';
 // //import { DetailsComponent } from './details.component';
 // //import { UpdateComponent } from './update.component';
 
@@ -14,13 +15,14 @@
 //         CommonModule,
 //         ReactiveFormsModule,
 //         LabSwapRoutingModule,
-//         //ModalComponent,
+//         ModalComponent,
 //         //LabSwapHomeComponent,
 //     ],
 //     declarations: [
-//         LayoutComponent,
+//         //LayoutComponent,
 //         //LabSwapHomeComponent,
-//         ModalComponent,
+//         LabSwapHomeEditComponent
+//         //ModalComponent,
 //         //DetailsComponent,
 //         //UpdateComponent
 //     ]
