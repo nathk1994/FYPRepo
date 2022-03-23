@@ -159,17 +159,6 @@ export class LabSwapHomeComponent implements OnInit {
             });
     }
 
-    public deleteLabSwap(id: string) {
-        const labSwap = this.labSwaps.find(x => x.id === id);
-        labSwap.isDeleting = true;
-        this.labSwapService.delete(id)
-            .pipe(first())
-            .subscribe(() => {
-                this.alertService.success('Lab Swap Deleted', { keepAfterRouteChange: true });
-                this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
-            });
-    }
-
     // convenience getter, for easy access to form fields
     get f() { return this.labSwapForm.controls; }
 
@@ -188,7 +177,7 @@ export class LabSwapHomeComponent implements OnInit {
         if (this.isAddMode) {
             this.createLabSwap();
         } else {
-            this.updateLabSwap();
+            this.updateLabSwap(this.id);
         }
 
         //this. = this.labSwapService.getAll();
@@ -206,7 +195,7 @@ export class LabSwapHomeComponent implements OnInit {
             
     }
 
-    private updateLabSwap() {
+    updateLabSwap(id: string) {
         this.labSwapService.update(this.id, this.labSwapForm.value)
             .pipe(first())
             .subscribe(() => {
@@ -214,6 +203,17 @@ export class LabSwapHomeComponent implements OnInit {
                 this.router.navigate(['../../'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
+    }
+
+    public deleteLabSwap(id: string) {
+        const labSwap = this.labSwaps.find(x => x.id === id);
+        labSwap.isDeleting = true;
+        this.labSwapService.delete(id)
+            .pipe(first())
+            .subscribe(() => {
+                this.alertService.success('Lab Swap Deleted', { keepAfterRouteChange: true });
+                this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
+            });
     }
 
     notifyLecturer() {

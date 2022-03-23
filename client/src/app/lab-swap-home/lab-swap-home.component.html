@@ -153,8 +153,8 @@
         </nk-modal>
 
         <!-- Modal -->
-        <nk-modal id="edit-modal-1" *ngFor="let labSwap of labSwaps">
-            <form [formGroup]="labSwapForm" *ngFor="let labSwap of labSwaps">
+        <nk-modal id="edit-modal-1">
+            <form [formGroup]="labSwapForm">
                 <!-- <div class="form-group col-4">
                     <h1>Testing</h1>
                     <label>*Your Full Name</label>
@@ -217,7 +217,7 @@
                 
                 <div class="modal-footer">
                     <div class="form-group">
-                        <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button>
+                        <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button> -->
 
                         <button (click)="closeModal('edit-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 
