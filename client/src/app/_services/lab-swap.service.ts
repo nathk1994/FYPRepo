@@ -5,6 +5,7 @@ import { environment } from '@environments/environment';
 import { LabSwap } from '@app/_models';
 // import { BehaviorSubject } from 'rxjs';
 
+import { Account } from '@app/_models';
 const baseUrl = `${environment.apiUrl}/lab-swaps`;
 
 @Injectable({ providedIn: 'root' })
@@ -34,6 +35,10 @@ export class LabSwapService {
 
     delete(id: string) {
         return this.http.delete(`${baseUrl}/${id}`);
+    }
+
+    notifyLecturer(account: Account) {
+        return this.http.post(`${baseUrl}/notifyLecturer`, account);
     }
 }
 

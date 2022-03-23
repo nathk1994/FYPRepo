@@ -1,4 +1,5 @@
 const db = require('_helpers/db');
+const sendEmail = require('_helpers/send-email');
 //const { Op } = require('sequelize');
 //const config = require('config.json');
 
@@ -15,8 +16,26 @@ module.exports = {
     getLabSwapById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    notifyLecturer
 };
+
+async function notifyLecturer() {
+    // send email
+    await sendNotifyLecturerEmail(account);
+}
+
+async function sendNotifyLecturerEmail(account) {
+    let message;
+    
+    await sendEmail({
+        to: account.email,
+        subject: 'Student Applying for Lab Slot',
+        html: `<h4>Student ${account.firstName} Attending ${labSwap.labName}</h4>
+               <p>Student ${account.firstName} Attending ${labSwap.labName}!</p>
+               ${message}`
+    });
+}
 
 async function getAllLabSwaps() {
     return await db.LabSwap.findAll();

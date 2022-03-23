@@ -13,6 +13,7 @@ export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
     //labSwap = this.labSwapService.labSwapValue;
     isLecturer: boolean = false
+    isStudent: boolean = false
     labSwap: LabSwap;
     labSwapForm!: FormGroup;
     id!: string;
@@ -86,6 +87,7 @@ export class LabSwapHomeComponent implements OnInit {
         }
 
         this.isTestEmail();
+        this.isStudentEmail();
     }
 
     //trying to implment the check here instead, and then set this.isLecturer = true;
@@ -99,6 +101,24 @@ export class LabSwapHomeComponent implements OnInit {
                 console.log("TEST EMAIL VALID");
                 //this.form.controls.isLecturer.patchValue('1'); // Intended way.
                 this.isLecturer = true; // optional way, working!
+            }
+            else{
+                console.log("TEST EMAIL INVALID");
+            }
+
+        //}
+    }
+
+    public isStudentEmail() { 
+
+        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // if(re.test(email)){
+            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
+            if(this.account.email.indexOf("@hotmail.com", this.account.email.length - "@hotmail.com".length) !== -1){
+                //VALID
+                console.log("TEST EMAIL VALID");
+                //this.form.controls.isStudent.patchValue('1'); // Intended way.
+                this.isStudent = true; // optional way, working!
             }
             else{
                 console.log("TEST EMAIL INVALID");
@@ -182,16 +202,27 @@ export class LabSwapHomeComponent implements OnInit {
                 this.router.navigate(['../'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
+            
     }
 
     private updateLabSwap() {
         this.labSwapService.update(this.id, this.labSwapForm.value)
             .pipe(first())
             .subscribe(() => {
-                this.alertService.success('Lab Swap updated', { keepAfterRouteChange: true });
+                this.alertService.success('Lab Swap Updated', { keepAfterRouteChange: true });
                 this.router.navigate(['../../'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
+    }
+
+    notifyLecturer() {
+        // this.labSwapService.update(this.id, this.labSwapForm.value)
+        //     .pipe(first())
+        //     .subscribe(() => {
+                this.alertService.success('Lab slot reserved and Lecturer has been notified!', { keepAfterRouteChange: true });
+                // this.router.navigate(['../../'], { relativeTo: this.route });
+            // })
+            // .add(() => this.loading = false);
     }
 }
 

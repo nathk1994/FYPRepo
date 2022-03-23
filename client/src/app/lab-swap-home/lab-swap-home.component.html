@@ -5,7 +5,7 @@
         <!-- <h2>You can create a lab swap request here!</h2> -->
         <!-- <p></p> -->
         <!-- Button for Lecturer to open lab detail modal -->
-        <button (click)="openModal('custom-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary" >Create available lab slots</button> <!-- *ngIf="isLecturer === true" -->
+        <button (click)="openModal('add-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary" >Create available lab slots</button> <!-- *ngIf="isLecturer === true" -->
     
 
         <!-- Button for Lecturer to open modal -->
@@ -50,12 +50,14 @@
                     <td>{{labSwap.classGroup}}</td>
                     <td>{{labSwap.availableLabSlotsNumber}}</td>
                     <td style="white-space: nowrap">
-                        <a routerLink="edit/{{labSwap.id}}" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</a>
+                        
+                        <!-- <a routerLink="edit/{{labSwap.id}}" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</a> -->
+                        <button (click)="openModal('edit-modal-1/{{labSwap.id}}')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button>
                         <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
                             <span *ngIf="!labSwap.isDeleting">Delete</span>
                         </button> -->
-                        <button (click)="applyForLabSlot()" class="btn btn-sm btn-success ml-1">Apply for Slot</button>
+                        <button (click)="notifyLecturer()" *ngIf="isStudent === true" class="btn btn-sm btn-success ml-1">Apply for Slot</button>
                     </td>
                 <!-- </tr> -->
                 <tr *ngIf="!labSwaps">
@@ -69,7 +71,7 @@
 
 
         <!-- Modal -->
-        <nk-modal id="custom-modal-1">
+        <nk-modal id="add-modal-1">
             <form [formGroup]="labSwapForm">
                 <!-- <div class="form-group col-4">
                     <h1>Testing</h1>
@@ -135,7 +137,88 @@
                     <div class="form-group">
                         <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button>
 
-                        <button (click)="closeModal('custom-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
+                        <button (click)="closeModal('add-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
+
+                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Create Lab Detail</button>
+                    <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
+                        <span *ngIf="deleting" class="spinner-border spinner-border-sm mr-1"></span>
+                        Delete
+                    </button>
+                    <a routerLink="../" href="" class="btn btn-link">Cancel</a> -->
+                    </div>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </form>
+        </nk-modal>
+
+        <!-- Modal -->
+        <nk-modal id="edit-modal-1">
+            <form [formGroup]="labSwapForm">
+                <!-- <div class="form-group col-4">
+                    <h1>Testing</h1>
+                    <label>*Your Full Name</label>
+                    <input type="text" formControlName="swapCandidateOne" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
+                    <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
+                        <div *ngIf="f.swapCandidateOne.errors.required">Full Name is required</div>
+                    </div>
+                </div>
+            
+                <div class="form-group col-4">
+                    <label>*Lab Swap Request Details</label>
+                    <input type="text" formControlName="swapRequestDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
+                    <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
+                        <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
+                    </div>
+                </div>
+
+                <hr class="rounded"> -->
+                <h2>Please Enter The Lab Details</h2>
+
+                <div class="form-group col-8">
+                    <label>*Lab Module Name</label>
+                    <input type="text" formControlName="labName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labName.errors }" />
+                    <div *ngIf="submitted && f.labName.errors" class="invalid-feedback">
+                        <div *ngIf="f.labName.errors.required">Lab Module Name is required</div>
+                    </div>
+                </div>
+            
+                <div class="form-group col-5">
+                    <label>*Lab Date</label>
+                    <input type="text" formControlName="labDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labDate.errors }" />
+                    <div *ngIf="submitted && f.labDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.labDate.errors.required">Lab Date (string) is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label>*Lab Time</label>
+                    <input type="text" formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }" />
+                    <div *ngIf="submitted && f.labTime.errors" class="invalid-feedback">
+                        <div *ngIf="f.labTime.errors.required">Lab Time (string) is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label>*Class Group</label>
+                    <input type="text" formControlName="classGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classGroup.errors }" />
+                    <div *ngIf="submitted && f.classGroup.errors" class="invalid-feedback">
+                        <div *ngIf="f.classGroup.errors.required">Class Group is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label>*No. Of Available Lab Slots</label>
+                    <input type="number" formControlName="availableLabSlotsNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.availableLabSlotsNumber.errors }" />
+                    <div *ngIf="submitted && f.availableLabSlotsNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.availableLabSlotsNumber.errors.required">No. Of Available Lab Slots (integer) is required!</div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button>
+
+                        <button (click)="closeModal('edit-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 
                         <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Create Lab Detail</button>
                     <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
