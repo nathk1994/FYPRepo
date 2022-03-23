@@ -52,7 +52,7 @@
                     <td style="white-space: nowrap">
                         
                         <!-- <a routerLink="edit/{{labSwap.id}}" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</a> -->
-                        <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger mr-1 btn-delete-labSwap">Delete</button>
+                        <button (click)="deleteLabSwap(labSwap.id)" *ngIf="isLecturer === true" class="btn btn-sm btn-danger mr-1 btn-delete-labSwap">Delete</button>
                         <button (click)="openModal('edit-modal-1')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button>
                         <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
