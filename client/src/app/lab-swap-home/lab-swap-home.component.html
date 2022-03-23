@@ -52,7 +52,7 @@
                     <td style="white-space: nowrap">
                         
                         <!-- <a routerLink="edit/{{labSwap.id}}" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</a> -->
-                        <button (click)="openModal('edit-modal-1/{{labSwap.id}}')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button>
+                        <button (click)="openModal('edit-modal-1')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button>
                         <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
                             <span *ngIf="!labSwap.isDeleting">Delete</span>
@@ -220,7 +220,7 @@
 
                         <button (click)="closeModal('edit-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 
-                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Create Lab Detail</button>
+                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Update Lab Detail</button>
                     <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
                         <span *ngIf="deleting" class="spinner-border spinner-border-sm mr-1"></span>
                         Delete
