@@ -31,7 +31,7 @@ router.get('/', authorize(Role.Admin), getAllLabSwaps);
 router.get('/:id', authorize(), getLabSwapById);
 router.post('/', authorize(Role.Admin), createLabSwapSchema, create);
 router.put('/:id', authorize(), updateLabSwapSchema, update);
-//router.delete('/:id', authorize(), _delete);
+router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
 
@@ -166,18 +166,6 @@ module.exports = router;
 //         .catch(next);
 // }
 
-function getAllLabSwaps(req, res, next) {
-    labSwapService.getAllLabSwaps()
-        .then(labSwaps => res.json(labSwaps))
-        .catch(next);
-}
-
-function getLabSwapById(req, res, next) {
-    labSwapService.getLabSwapById(req.params.id)
-        .then(labSwap => res.json(labSwap))
-        .catch(next);
-}
-
 // function getLabSwapById(req, res, next) {
 //     // users can get their own Lab Swap and admins can get any Lab Swap
 //     if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
@@ -200,6 +188,19 @@ function getLabSwapById(req, res, next) {
 //         .catch(next);
 // }
 
+function getAllLabSwaps(req, res, next) {
+    labSwapService.getAllLabSwaps()
+        .then(labSwaps => res.json(labSwaps))
+        .catch(next);
+}
+
+
+function getLabSwapById(req, res, next) {
+    labSwapService.getLabSwapById(req.params.id)
+        .then(labSwap => res.json(labSwap))
+        .catch(next);
+}
+
 function create(req, res, next) {
     labSwapService.create(req.body)
         .then(() => res.json({ message: 'Lab Swap created' }))
@@ -207,30 +208,33 @@ function create(req, res, next) {
         .catch(next);
 }
 
+
 function update(req, res, next) {
     labSwapService.update(req.params.id, req.body)
         .then(() => res.json({ message: 'Lab Swap updated' }))
         .catch(next);
 }
 
-// function update(req, res, next) {
-//     // users can update their own account and admins can update any account
-//     if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
-//         return res.status(401).json({ message: 'Unauthorized' });
-//     }
 
-//     labSwapService.update(req.params.id, req.body)
-//         .then(labSwap => res.json(labSwap))
-//         .catch(next);
-// }
+function update(req, res, next) {
+    // users can update their own account and admins can update any account
+    if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    labSwapService.update(req.params.id, req.body)
+        .then(labSwap => res.json(labSwap))
+        .catch(next);
+}
+
 
 function createLabSwapSchema(req, res, next) {
     const schema = Joi.object({
-        fullNameList: Joi.string(),
-        swapCandidateOne: Joi.string().required(),
-        swapCandidateTwo: Joi.string(),
-        swapRequestDetail: Joi.string(),
-        isSwapComplete: Joi.boolean().valid(false),
+        // fullNameList: Joi.string(),
+        // swapCandidateOne: Joi.string().required(),
+        // swapCandidateTwo: Joi.string(),
+        // swapRequestDetail: Joi.string(),
+        // isSwapComplete: Joi.boolean().valid(false),
         labName: Joi.string().required(),
         labDate: Joi.string().required(),
         labTime: Joi.string().required(),
@@ -241,10 +245,11 @@ function createLabSwapSchema(req, res, next) {
     validateRequest(req, next, schema);
 }
 
+
 function updateLabSwapSchema(req, res, next) {
     const schema = Joi.object({
-        swapRequestDetail: Joi.string().empty(''),
-        swapCandidateOne: Joi.string().empty(''),
+        // swapRequestDetail: Joi.string().empty(''),
+        // swapCandidateOne: Joi.string().empty(''),
         labName: Joi.string().empty(''),
         labDate: Joi.string().empty(''),
         labTime: Joi.string().empty(''),
@@ -263,13 +268,14 @@ function updateLabSwapSchema(req, res, next) {
     validateRequest(req, next, schema);
 }
 
-// function _delete(req, res, next) {
-//     // users can delete their own lab swap and admins can delete any lab swap
-//     if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
-//         return res.status(401).json({ message: 'Unauthorized' });
-//     }
 
-//     accountService.delete(req.params.id)
-//         .then(() => res.json({ message: 'Lab Swap deleted successfully' }))
-//         .catch(next);
-// }
+function _delete(req, res, next) {
+    // users can delete their own lab swap and admins can delete any lab swap
+    if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    labSwapService.delete(req.params.id)
+        .then(() => res.json({ message: 'Lab Swap deleted successfully' }))
+        .catch(next);
+}

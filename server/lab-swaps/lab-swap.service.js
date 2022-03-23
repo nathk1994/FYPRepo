@@ -45,16 +45,6 @@ async function getLabSwapById(id) {
     return await getLabSwap(id);
 }
 
-// async function getAllLabSwaps() {
-//     const labSwaps = await db.LabSwap.findAll();
-//     return labSwaps.map(x => basicDetails(x));
-// }
-
-// async function getLabSwapById(id) {
-//     const labSwap = await getLabSwap(id);
-//     return basicDetails(labSwap);
-// }
-
 async function create(params) {
     // validate
     //if (await db.LabSwap.findOne({ where: { email: params.email } })) {
@@ -107,6 +97,16 @@ async function getLabSwap(id) {
     if (!labSwap) throw 'Lab Swap not found';
     return labSwap;
 }
+
+// async function getAllLabSwaps() {
+//     const labSwaps = await db.LabSwap.findAll();
+//     return labSwaps.map(x => basicDetails(x));
+// }
+
+// async function getLabSwapById(id) {
+//     const labSwap = await getLabSwap(id);
+//     return basicDetails(labSwap);
+// }
 
 // function basicDetails(labSwap) {
 //     const { id, fullNameList, swapRequestDetail, swapCandidateOne, swapCandidateTwo, isSwapComplete } = labSwap;

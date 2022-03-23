@@ -165,6 +165,7 @@ export class LabSwapHomeComponent implements OnInit {
         this.labSwapService.delete(id)
             .pipe(first())
             .subscribe(() => {
+                this.alertService.success('Lab Swap Deleted', { keepAfterRouteChange: true });
                 this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
             });
     }
@@ -190,7 +191,7 @@ export class LabSwapHomeComponent implements OnInit {
             this.updateLabSwap();
         }
 
-       // this.router.navigate(['../lab-swap-home'], { relativeTo: this.route });
+        //this. = this.labSwapService.getAll();
         this.modalService.close; // investigate, not working
     }
 
