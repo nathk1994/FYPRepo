@@ -153,8 +153,8 @@
         </nk-modal>
 
         <!-- Modal -->
-        <nk-modal id="edit-modal-1">
-            <form [formGroup]="labSwapForm">
+        <nk-modal id="edit-modal-1" *ngFor="let labSwap of labSwaps">
+            <form [formGroup]="labSwapForm" *ngFor="let labSwap of labSwaps">
                 <!-- <div class="form-group col-4">
                     <h1>Testing</h1>
                     <label>*Your Full Name</label>
