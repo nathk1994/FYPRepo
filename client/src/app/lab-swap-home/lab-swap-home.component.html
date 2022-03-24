@@ -1,11 +1,11 @@
 ﻿<div class="p-4">
     <div class="container">
         <!-- <h1>Welcome {{account.firstName}}!</h1> -->
-        <h2>Welcome {{account.firstName}}!</h2>
+        <h4>Welcome {{account.firstName}}!</h4>
         <!-- <h2>You can create a lab swap request here!</h2> -->
         <!-- <p></p> -->
         <!-- Button for Lecturer to open lab detail modal -->
-        <button (click)="openModal('add-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary" >Create available lab slots</button> <!-- *ngIf="isLecturer === true" -->
+        <button (click)="openModal('add-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary" >Create Announcement</button> <!-- *ngIf="isLecturer === true" -->
     
 
         <!-- Button for Lecturer to open modal -->
@@ -16,7 +16,7 @@
         <hr class="rounded">
 
         <!-- <h1>Current Lab Swaps</h1> -->
-        <h2>List of Labs with additional slots available:</h2>
+        <h4>Labs with additional slots available:</h4>
         <!-- <a routerLink="add" class="btn btn-sm btn-success ml-3 mb-2">Create Lab Swap Request</a> -->
         <table class="table table-striped">
             <thead>
@@ -53,7 +53,7 @@
                         
                         <!-- <a routerLink="edit/{{labSwap.id}}" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</a> -->
                         <button (click)="deleteLabSwap(labSwap.id)" *ngIf="isLecturer === true" class="btn btn-sm btn-danger mr-1 btn-delete-labSwap">Delete</button>
-                        <button (click)="openModal('edit-modal-1')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button>
+                        <!-- <button (click)="openModal('edit-modal-1')" *ngIf="isLecturer === true" class="btn btn-sm btn-primary mr-1">Edit Lab Detail</button> -->
                         <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
                             <span *ngIf="!labSwap.isDeleting">Delete</span>
@@ -92,8 +92,9 @@
                 </div>
 
                 <hr class="rounded"> -->
-                <h2>Please Enter The Lab Details</h2>
-
+                
+                <h5 class="modal-title">Please Enter The Lab Details</h5>
+                <div class="modal-header"></div>
                 <div class="form-group col-8">
                     <label>*Lab Module Name</label>
                     <input type="text" formControlName="labName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labName.errors }" />
@@ -136,7 +137,7 @@
                 
                 <div class="modal-footer">
                     <div class="form-group">
-                        <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button>
+                        <!-- <button (click)="deleteLabSwap(labSwap.id)" class="btn btn-sm btn-danger btn-delete-labSwap">Delete</button> -->
 
                         <button (click)="closeModal('add-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 

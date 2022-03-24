@@ -10,6 +10,7 @@ const multer = require('multer')
 //const upload = multer({ dest: 'images/' })
 var fileExtension = require('file-extension')
 
+//app.use(express.static(__dirname+'/uploaded-files'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
