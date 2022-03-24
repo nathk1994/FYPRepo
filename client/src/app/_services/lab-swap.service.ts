@@ -37,8 +37,12 @@ export class LabSwapService {
         return this.http.delete(`${baseUrl}/${id}`);
     }
 
-    notifyLecturer(account: Account) {
-        return this.http.post(`${baseUrl}/notifyLecturer`, account);
+    // notifyLecturer(account: Account) {
+    //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
+    // }
+
+    notifyLecturer(labSwap: LabSwap) {
+        return this.http.post(`${baseUrl}/notifyLecturer`, labSwap);
     }
 }
 

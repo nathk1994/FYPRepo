@@ -20,7 +20,8 @@ module.exports = {
     getById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    notifyLecturer
 };
 
 async function authenticate({ email, password, ipAddress }) {
@@ -298,6 +299,29 @@ async function sendPasswordResetEmail(account, origin) {
         to: account.email,
         subject: 'Sign-up Verification API - Reset Password',
         html: `<h4>Reset Password Email</h4>
+               ${message}`
+    });
+}
+
+async function notifyLecturer(params, origin) {
+    // create account object
+    const account = new db.Account(params);
+
+    // create labSwap object
+    const labSwap = new db.LabSwap(params);
+
+    // send email
+    await sendNotifyLecturerEmail(account, labSwap, origin);
+}
+
+async function sendNotifyLecturerEmail(account, labSwap) {
+    let message;
+    
+    await sendEmail({
+        to: account.email,
+        subject: 'Attention - Student is Applying for a Lab Slot',
+        html: `<h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwap.labName} !</h4>
+               
                ${message}`
     });
 }

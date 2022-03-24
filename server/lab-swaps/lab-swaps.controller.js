@@ -26,7 +26,7 @@ router.put('/:id', updateLabSwapSchema, update);
 //router.delete('/:id', _delete);
 
 //Original Routes
-//router.post('/register', labSwapSchema);
+router.post('/notifyLecturer', notifyLecturer);
 router.get('/', authorize(Role.Admin), getAllLabSwaps);
 router.get('/:id', authorize(), getLabSwapById);
 router.post('/', authorize(Role.Admin), createLabSwapSchema, create);
@@ -187,6 +187,12 @@ module.exports = router;
 //         .then(account => account ? res.json(account) : res.sendStatus(404))
 //         .catch(next);
 // }
+
+function notifyLecturer(req, res, next) {
+    labSwapService.notifyLecturer(req.body, req.get('origin'))
+        .then(() => res.json({ message: 'Lecturer notified via email' }))
+        .catch(next);
+}
 
 function getAllLabSwaps(req, res, next) {
     labSwapService.getAllLabSwaps()

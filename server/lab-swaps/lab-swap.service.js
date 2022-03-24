@@ -20,18 +20,24 @@ module.exports = {
     notifyLecturer
 };
 
-async function notifyLecturer() {
+async function notifyLecturer(params, origin) {
+    // create account object
+    const account = new db.Account(params);
+
+    // create labSwap object
+    const labSwap = new db.LabSwap(params);
+
     // send email
-    await sendNotifyLecturerEmail(account);
+    await sendNotifyLecturerEmail(account, labSwap, origin);
 }
 
-async function sendNotifyLecturerEmail(account) {
+async function sendNotifyLecturerEmail(account, labSwap) {
     let message;
     
     await sendEmail({
         to: account.email,
-        subject: 'Student Applying for Lab Slot',
-        html: `<h4>Student ${account.firstName} Attending ${labSwap.labName}</h4>
+        subject: 'Attention - Student is Applying for a Lab Slot',
+        html: `<h4>Student ${account.firstName} ${account.lastName} Attending ${labSwap.labName}</h4>
                <p>Student ${account.firstName} Attending ${labSwap.labName}!</p>
                ${message}`
     });

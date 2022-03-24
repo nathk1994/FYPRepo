@@ -122,4 +122,8 @@ export class AccountService {
     private stopRefreshTokenTimer() {
         clearTimeout(this.refreshTokenTimeout);
     }
+
+    notifyLecturer(account: Account) {
+        return this.http.post(`${baseUrl}/notifyLecturer`, account);
+    }
 }

@@ -33,7 +33,7 @@ export class LabSwapHomeComponent implements OnInit {
         private router: Router,
         private accountService: AccountService,
         private labSwapService: LabSwapService,
-        private alertService: AlertService
+        private alertService: AlertService,
     ) {}
 
     ngOnInit() { // void?
@@ -162,6 +162,8 @@ export class LabSwapHomeComponent implements OnInit {
     // convenience getter, for easy access to form fields
     get f() { return this.labSwapForm.controls; }
 
+    // get emails() { return this.account.email; }
+
     onSubmit() {
         this.submitted = true;
 
@@ -217,13 +219,19 @@ export class LabSwapHomeComponent implements OnInit {
     }
 
     notifyLecturer() {
-        // this.labSwapService.update(this.id, this.labSwapForm.value)
-        //     .pipe(first())
-        //     .subscribe(() => {
-                this.alertService.success('Lab slot reserved and Lecturer has been notified!', { keepAfterRouteChange: true });
-                // this.router.navigate(['../../'], { relativeTo: this.route });
-            // })
-            // .add(() => this.loading = false);
+            //this.labSwapService.notifyLecturer(this.labSwap);
+            this.accountService.notifyLecturer(this.account)
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    this.alertService.success('Lab slot reserved and Lecturer has been notified!', { keepAfterRouteChange: true });
+                    this.router.navigate(['/'], { relativeTo: this.route });
+                },
+                error: error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                }
+            });
     }
 }
 
