@@ -246,7 +246,7 @@ function createLabSwapSchema(req, res, next) {
         labTime: Joi.string().required(),
         classGroup: Joi.string().required(), //maybe classGroupId and make a new table, for dropdown list instead.
         availableLabSlotsNumber: Joi.number().integer().required(),
-        
+        createdBy: Joi.string(),
     });
     validateRequest(req, next, schema);
 }
@@ -261,6 +261,7 @@ function updateLabSwapSchema(req, res, next) {
         labTime: Joi.string().empty(''),
         classGroup: Joi.string().empty(''),
         availableLabSlotsNumber: Joi.number().integer().empty(''),
+        createdBy: Joi.string().empty(''),
         //swapCandidateTwo: Joi.string().empty(''),
         //isSwapComplete: Joi.boolean().empty(''),
     });

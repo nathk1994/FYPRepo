@@ -319,7 +319,7 @@ async function sendNotifyLecturerEmail(account, labSwap) {
     
     await sendEmail({
         to: account.email,
-        subject: 'Attention - Student is Applying for a Lab Slot',
+        subject: 'Attention - Student has reserved a Lab Slot',
         html: `<h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwap.labName} !</h4>
                
                ${message}`

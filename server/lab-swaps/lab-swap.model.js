@@ -16,6 +16,7 @@ function model(sequelize) {
         labTime: { type: DataTypes.STRING, allowNull: true },
         classGroup: { type: DataTypes.STRING, allowNull: true },
         availableLabSlotsNumber: { type: DataTypes.INTEGER, allowNull: true },
+        createdBy: { type: DataTypes.STRING, allowNull: true },
         created: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
         updated: { type: DataTypes.DATE },
 

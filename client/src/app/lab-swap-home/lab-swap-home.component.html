@@ -58,7 +58,7 @@
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
                             <span *ngIf="!labSwap.isDeleting">Delete</span>
                         </button> -->
-                        <button (click)="notifyLecturer()" *ngIf="isStudent === true" class="btn btn-sm btn-success ml-1">Apply for Slot</button>
+                        <button (click)="notifyLecturer()" *ngIf="isStudent === true" class="btn btn-sm btn-success ml-1">Reserve Slot</button>
                     </td>
                 <!-- </tr> -->
                 <tr *ngIf="!labSwaps">
@@ -141,7 +141,7 @@
 
                         <button (click)="closeModal('add-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 
-                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Create Lab Detail</button>
+                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-success mr-2 ml-3">Save</button>
                     <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
                         <span *ngIf="deleting" class="spinner-border spinner-border-sm mr-1"></span>
                         Delete
@@ -222,7 +222,7 @@
 
                         <button (click)="closeModal('edit-modal-1');" class="btn btn-primary mr-2 ml-3">Close</button>
 
-                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-sm btn-success mr-2 ml-3">Update Lab Detail</button>
+                        <button (click)="onSubmit()" [disabled]="loading" class="btn btn-success mr-2 ml-3">Update</button>
                     <!-- <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
                         <span *ngIf="deleting" class="spinner-border spinner-border-sm mr-1"></span>
                         Delete
