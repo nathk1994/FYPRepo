@@ -14,10 +14,13 @@
             <label>Title</label>
             <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
                 <option value=""></option>
+                <option value="Mr">Sir</option>
+                <option value="Mr">Dr</option>
                 <option value="Mr">Mr</option>
                 <option value="Mrs">Mrs</option>
                 <option value="Miss">Miss</option>
                 <option value="Ms">Ms</option>
+                <option value="Mr">Prefer Not To Say</option>
             </select>
             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                 <div *ngIf="f.title.errors.required">Title is required</div>
