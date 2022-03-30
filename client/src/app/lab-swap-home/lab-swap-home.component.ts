@@ -183,7 +183,8 @@ export class LabSwapHomeComponent implements OnInit {
         }
 
         //this. = this.labSwapService.getAll();
-        this.modalService.close; // investigate, not working
+        this.modalService.close("add-modal-1"); // investigate, not working
+        //this.retrieveLabSwaps();
     }
 
     private createLabSwap() {
@@ -224,7 +225,7 @@ export class LabSwapHomeComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Lab slot reserved and Lecturer has been notified!', { keepAfterRouteChange: true });
+                    this.alertService.success('Lab slot reserved. Lecturer has been notified!', { keepAfterRouteChange: true });
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 error: error => {
