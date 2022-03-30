@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 // import { MustMatch } from '@app/_helpers';
@@ -25,6 +25,7 @@ export class LabSwapHomeComponent implements OnInit {
     currentLabSwap = null;
     isDeleting;
     //labSwap?: LabSwap[];
+    mySubscription;
 
     constructor(
         public modalService: ModalService,
@@ -34,7 +35,16 @@ export class LabSwapHomeComponent implements OnInit {
         private accountService: AccountService,
         private labSwapService: LabSwapService,
         private alertService: AlertService,
-    ) {}
+    )
+    {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.mySubscription = this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+            // Trick the Router into believing it's last link wasn't previously loaded
+            this.router.navigated = false;
+            }
+        }); 
+    } 
 
     ngOnInit() { // void?
         this.retrieveAccounts();
@@ -88,6 +98,16 @@ export class LabSwapHomeComponent implements OnInit {
 
         this.isTestEmail();
         this.isStudentEmail();
+    }
+
+    ngOnDestroy(){
+        if (this.mySubscription) {
+          this.mySubscription.unsubscribe();
+        }
+    }
+
+    reload(){
+        this.router.navigate([this.router.url])
     }
 
     //trying to implment the check here instead, and then set this.isLecturer = true;
@@ -184,7 +204,7 @@ export class LabSwapHomeComponent implements OnInit {
 
         //this. = this.labSwapService.getAll();
         this.modalService.close("add-modal-1"); // investigate, not working
-        //this.retrieveLabSwaps();
+        this.reload(); // will cause form submission cancelled error in console but sends from anyway..
     }
 
     private createLabSwap() {
@@ -192,7 +212,8 @@ export class LabSwapHomeComponent implements OnInit {
             .pipe(first())
             .subscribe(() => {
                 this.alertService.success('Lab Swap Created', { keepAfterRouteChange: true });
-                this.router.navigate(['../'], { relativeTo: this.route });
+                this.router.navigate(['/lab'], { relativeTo: this.route });
+                //this.router.navigate(['/'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
             
@@ -203,7 +224,7 @@ export class LabSwapHomeComponent implements OnInit {
             .pipe(first())
             .subscribe(() => {
                 this.alertService.success('Lab Swap Updated', { keepAfterRouteChange: true });
-                this.router.navigate(['../../'], { relativeTo: this.route });
+                this.router.navigate(['/lab'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
     }
@@ -226,7 +247,7 @@ export class LabSwapHomeComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.alertService.success('Lab slot reserved. Lecturer has been notified!', { keepAfterRouteChange: true });
-                    this.router.navigate(['/'], { relativeTo: this.route });
+                    this.router.navigate(['/lab'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);

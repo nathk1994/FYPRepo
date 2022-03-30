@@ -10,13 +10,13 @@ const adminModule = () => import('./admin/admin.module').then(x => x.AdminModule
 const profileModule = () => import('./profile/profile.module').then(x => x.ProfileModule);
 
 const routes: Routes = [
-    { path: '', component: LabSwapHomeComponent, canActivate: [AuthGuard] },
+    { path: 'lab', component: LabSwapHomeComponent, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
     { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
     { path: 'admin', loadChildren: adminModule, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
 
     // otherwise redirect to lab-swap-home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'lab' }
 ];
 
 @NgModule({
