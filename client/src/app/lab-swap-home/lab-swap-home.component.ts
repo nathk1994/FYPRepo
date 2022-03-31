@@ -205,6 +205,7 @@ export class LabSwapHomeComponent implements OnInit {
         //this. = this.labSwapService.getAll();
         this.modalService.close("add-modal-1"); // investigate, not working
         this.reload(); // will cause form submission cancelled error in console but sends from anyway..
+        //post(this.account.email => this.labSwap.createdBy.value);
     }
 
     private createLabSwap() {
