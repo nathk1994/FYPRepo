@@ -23,7 +23,7 @@ app.use('/accounts', require('./accounts/accounts.controller'));
 app.use('/lab-swaps', require('./lab-swaps/lab-swaps.controller')); // was causing server crash on boot
 
 // swagger docs route
-app.use('/api-docs', require('./_helpers/swagger'));
+app.use('/api-docs', require('_helpers/swagger'));
 
 // global error handler
 app.use(errorHandler);

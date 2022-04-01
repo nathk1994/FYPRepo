@@ -1,5 +1,5 @@
-const db = require('./_helpers/db');
-const sendEmail = require('./_helpers/send-email');
+const db = require('_helpers/db');
+const sendEmail = require('_helpers/send-email');
 //const { Op } = require('sequelize');
 //const config = require('config.json');
 
