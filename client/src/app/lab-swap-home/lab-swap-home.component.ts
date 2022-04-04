@@ -11,10 +11,12 @@ import { Account } from '@app/_models/account';
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
-    //labSwap = this.labSwapService.labSwapValue;
+    labSwapV = this.labSwapService.labSwapValue;
+    isAdmin: boolean = false
     isLecturer: boolean = false
     isStudent: boolean = false
     labSwap: LabSwap;
+    //account: Account;
     labSwapForm!: FormGroup;
     id!: string;
     isAddMode!: boolean;
@@ -96,8 +98,9 @@ export class LabSwapHomeComponent implements OnInit {
                 .subscribe(x => this.labSwapForm.patchValue(x));
         }
 
-        this.isTestEmail();
+        this.isAdminEmail();
         this.isStudentEmail();
+        this.isLecturerEmail();
     }
 
     ngOnDestroy(){
@@ -111,19 +114,19 @@ export class LabSwapHomeComponent implements OnInit {
     }
 
     //trying to implment the check here instead, and then set this.isLecturer = true;
-    public isTestEmail() { 
+    public isAdminEmail() { 
 
         // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         // if(re.test(email)){
             //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
             if(this.account.email.indexOf("@hotmail.com", this.account.email.length - "@hotmail.com".length) !== -1){
                 //VALID
-                console.log("TEST EMAIL VALID");
+                console.log("ADMIN EMAIL VALID");
                 //this.form.controls.isLecturer.patchValue('1'); // Intended way.
-                this.isLecturer = true; // optional way, working!
+                this.isAdmin = true; // optional way, working!
             }
             else{
-                console.log("TEST EMAIL INVALID");
+                console.log("ADMIN EMAIL INVALID");
             }
 
         //}
@@ -134,14 +137,32 @@ export class LabSwapHomeComponent implements OnInit {
         // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         // if(re.test(email)){
             //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
-            if(this.account.email.indexOf("@hotmail.com", this.account.email.length - "@hotmail.com".length) !== -1){
+            if(this.account.email.indexOf("@mycit.ie", this.account.email.length - "@mycit.ie".length) !== -1){
                 //VALID
-                console.log("TEST EMAIL VALID");
+                console.log("STUDENT EMAIL VALID");
                 //this.form.controls.isStudent.patchValue('1'); // Intended way.
                 this.isStudent = true; // optional way, working!
             }
             else{
-                console.log("TEST EMAIL INVALID");
+                console.log("STUDENT EMAIL INVALID");
+            }
+
+        //}
+    }
+
+    public isLecturerEmail() { 
+
+        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // if(re.test(email)){
+            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
+            if(this.account.email.indexOf("@mtu.ie", this.account.email.length - "@mtu.ie".length) !== -1){
+                //VALID
+                console.log("LECTURER EMAIL VALID");
+                //this.form.controls.isStudent.patchValue('1'); // Intended way.
+                this.isLecturer = true; // optional way, working!
+            }
+            else{
+                console.log("LECTURER EMAIL INVALID");
             }
 
         //}
@@ -203,7 +224,7 @@ export class LabSwapHomeComponent implements OnInit {
         }
 
         //this. = this.labSwapService.getAll();
-        this.modalService.close("add-modal-1"); // investigate, not working
+        this.modalService.close("add-modal-1");
         this.reload(); // will cause form submission cancelled error in console but sends from anyway..
         //post(this.account.email => this.labSwap.createdBy.value);
     }
@@ -241,9 +262,10 @@ export class LabSwapHomeComponent implements OnInit {
             });
     }
 
-    notifyLecturer() {
+    notifyLecturer() { //uses !account! service
             //this.labSwapService.notifyLecturer(this.labSwap);
-            this.accountService.notifyLecturer(this.account)
+            debugger;
+            this.accountService.notifyLecturer(this.account, this.labSwapV) //this.labSwap
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -255,6 +277,7 @@ export class LabSwapHomeComponent implements OnInit {
                     this.loading = false;
                 }
             });
+            debugger;
     }
 }
 

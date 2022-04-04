@@ -1,4 +1,5 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { LabSwap } from './../_models/labSwap';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -123,7 +124,12 @@ export class AccountService {
         clearTimeout(this.refreshTokenTimeout);
     }
 
-    notifyLecturer(account: Account) {
-        return this.http.post(`${baseUrl}/notifyLecturer`, account);
+    // notifyLecturer(account: Account) {
+    //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
+    //     // or &&?
+    // }
+
+    notifyLecturer(account: Account, labSwapV: LabSwap) {
+        return this.http.post(`${baseUrl}/notifyLecturer`,  {account, labSwapV})
     }
 }

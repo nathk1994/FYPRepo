@@ -6,16 +6,23 @@ import { LabSwap } from '@app/_models';
 // import { BehaviorSubject } from 'rxjs';
 
 import { Account } from '@app/_models';
+import { BehaviorSubject, Observable } from 'rxjs';
 const baseUrl = `${environment.apiUrl}/lab-swaps`;
 
 @Injectable({ providedIn: 'root' })
 export class LabSwapService {
-    constructor(private http: HttpClient) { }
-    // private labSwapSubject: BehaviorSubject<LabSwap>;
+    private labSwapSubject: BehaviorSubject<LabSwap>;
+    public labSwap: Observable<LabSwap>;
 
-    // public get labSwapValue(): LabSwap {
-    //     return this.labSwapSubject.value;
-    // }
+    constructor(private http: HttpClient
+        ) { 
+        this.labSwapSubject = new BehaviorSubject<LabSwap>(null);
+        this.labSwap = this.labSwapSubject.asObservable();
+    }
+
+    public get labSwapValue(): LabSwap {
+        return this.labSwapSubject.value;
+    }
 
     getAll() {
         return this.http.get<LabSwap[]>(baseUrl);
@@ -41,9 +48,16 @@ export class LabSwapService {
     //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
     // }
 
-    notifyLecturer(labSwap: LabSwap) {
-        return this.http.post(`${baseUrl}/notifyLecturer`, labSwap);
-    }
+    // notifyLecturer(labSwap: LabSwap) {
+    //     return this.http.post(`${baseUrl}/notifyLecturer`, labSwap);
+    // }
+
+    // createdBy(labSwap: LabSwap): Observable<LabSwap> {
+    //     return this.http.post<LabSwap>(this.heroesUrl, labSwap, httpOptions)
+    //       .pipe(
+    //         catchError(this.handleError('addLabSwap', labSwap))
+    //     );
+    // }
 }
 
 // import { Injectable } from '@angular/core';

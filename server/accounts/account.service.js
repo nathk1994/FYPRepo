@@ -314,13 +314,13 @@ async function notifyLecturer(params, origin) {
     await sendNotifyLecturerEmail(account, labSwap, origin);
 }
 
-async function sendNotifyLecturerEmail(account, labSwap) {
+async function sendNotifyLecturerEmail(account, labSwapV) {
     let message;
     
     await sendEmail({
         to: account.email,
         subject: 'Attention - Student has reserved a Lab Slot',
-        html: `<h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwap.labName} !</h4>
+        html: `<h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwapV.labName} !</h4>
                
                ${message}`
     });
