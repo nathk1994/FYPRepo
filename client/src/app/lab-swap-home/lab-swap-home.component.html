@@ -127,27 +127,37 @@
 
                 <div class="form-group col-5">
                     <label>*Lab Time</label>
-                    <input type="text" formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }" />
+                    <!-- <input type="text" formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }" />
                     <div *ngIf="submitted && f.labTime.errors" class="invalid-feedback">
                         <div *ngIf="f.labTime.errors.required">Lab Time (string) is required</div>
-                    </div>
-                    <!-- <select formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }">
+                    </div> -->
+                    <select formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }">
                         <option value=""></option>
                         <option value="9:00-10:00">9:00-10:00</option>
+                        <option value="9:00-11:00">9:00-11:00</option>
                         <option value="10:00-11:00">10:00-11:00</option>
+                        <option value="10:00-12:00">10:00-12:00</option>
                         <option value="11:00-12:00">11:00-12:00</option>
+                        <option value="11:00-13:00">11:00-13:00</option>
                         <option value="12:00-13:00">12:00-13:00</option>
+                        <option value="12:00-14:00">12:00-14:00</option>
                         <option value="13:00-14:00">13:00-14:00</option>
+                        <option value="13:00-15:00">13:00-15:00</option>
                         <option value="14:00-15:00">14:00-15:00</option>
+                        <option value="14:00-16:00">14:00-16:00</option>
                         <option value="15:00-16:00">15:00-16:00</option>
+                        <option value="15:00-17:00">15:00-17:00</option>
                         <option value="16:00-17:00">16:00-17:00</option>
+                        <option value="16:00-18:00">16:00-18:00</option>
                         <option value="17:00-18:00">17:00-18:00</option>
+                        <option value="17:00-19:00">17:00-19:00</option>
                         <option value="18:00-19:00">18:00-19:00</option>
+                        <option value="18:00-20:00">18:00-20:00</option>
                         <option value="19:00-20:00">19:00-20:00</option>
-                    </select> -->
-                    <!-- <div *ngIf="submitted && f.labTime.errors" class="invalid-feedback">
+                    </select>
+                    <div *ngIf="submitted && f.labTime.errors" class="invalid-feedback">
                         <div *ngIf="f.labTime.errors.required">Lab Time is required</div>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="form-group col-5">
