@@ -124,12 +124,11 @@ export class AccountService {
         clearTimeout(this.refreshTokenTimeout);
     }
 
-    // notifyLecturer(account: Account) {
-    //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
-    //     // or &&?
-    // }
-
-    notifyLecturer(account: Account, labSwapV: LabSwap) {
-        return this.http.post(`${baseUrl}/notifyLecturer`,  {account, labSwapV})
+    notifyLecturer(account: Account) {
+        return this.http.post(`${baseUrl}/notifyLecturer`, account);
     }
+
+    // notifyLecturer(account: Account, labSwapV: LabSwap) {
+    //     return this.http.post(`${baseUrl}/notifyLecturer`,  {account, labSwapV})
+    // }
 }

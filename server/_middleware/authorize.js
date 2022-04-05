@@ -19,10 +19,10 @@ function authorize(roles = []) {
         async (req, res, next) => {
             const account = await db.Account.findByPk(req.user.id);
 
-            if (!account || (roles.length && !roles.includes(account.role))) {
-                // account no longer exists or role not authorized
-                return res.status(401).json({ message: 'Unauthorized' });
-            }
+            // if (!account || (roles.length && !roles.includes(account.role))) {
+            //     // account no longer exists or role not authorized
+            //     return res.status(401).json({ message: 'ROLE Unauthorized' });
+            // }
 
             // authentication and authorization successful
             req.user.role = account.role;

@@ -278,9 +278,9 @@ function updateLabSwapSchema(req, res, next) {
 
 function _delete(req, res, next) {
     // users can delete their own lab swap and admins can delete any lab swap
-    if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+    // if (Number(req.params.id) !== req.user.id && req.user.role !== Role.Admin) {
+    //     return res.status(401).json({ message: 'Unauthorized' });
+    // }
 
     labSwapService.delete(req.params.id)
         .then(() => res.json({ message: 'Lab Swap deleted successfully' }))

@@ -9,4 +9,5 @@ export class Account {
     role: Role;
     jwtToken?: string;
     isLecturer?: boolean;
+    accountClassGroup: string;
 }

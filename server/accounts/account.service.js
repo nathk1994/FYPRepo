@@ -243,8 +243,8 @@ function randomTokenString() {
 }
 
 function basicDetails(account) {
-    const { id, title, firstName, lastName, email, role, created, updated, isVerified } = account;
-    return { id, title, firstName, lastName, email, role, created, updated, isVerified };
+    const { id, title, firstName, lastName, email, role, created, updated, isVerified, accountClassGroup } = account;
+    return { id, title, firstName, lastName, email, role, created, updated, isVerified, accountClassGroup };
 }
 
 async function sendVerificationEmail(account, origin) {
@@ -260,9 +260,10 @@ async function sendVerificationEmail(account, origin) {
 
     await sendEmail({
         to: account.email,
-        subject: 'Sign-up Verification API - Verify Email',
-        html: `<h4>Verify Email</h4>
-               <p>Thanks for registering!</p>
+        subject: 'Lab Management Resoure - Verify Email',
+        html: `<h4>Please Verify Your Email</h4>
+               <p>Hello!
+               <br>Thank you for registering to access the lab managment resource!</p>
                ${message}`
     });
 }
@@ -277,7 +278,7 @@ async function sendAlreadyRegisteredEmail(email, origin) {
 
     await sendEmail({
         to: email,
-        subject: 'Sign-up Verification API - Email Already Registered',
+        subject: 'Lab Management Resoure - Email Already Registered',
         html: `<h4>Email Already Registered</h4>
                <p>Your email <strong>${email}</strong> is already registered.</p>
                ${message}`
@@ -297,7 +298,7 @@ async function sendPasswordResetEmail(account, origin) {
 
     await sendEmail({
         to: account.email,
-        subject: 'Sign-up Verification API - Reset Password',
+        subject: 'Lab Management Resoure - Reset Password',
         html: `<h4>Reset Password Email</h4>
                ${message}`
     });
@@ -315,13 +316,16 @@ async function notifyLecturer(params, origin) {
 }
 
 async function sendNotifyLecturerEmail(account, labSwapV) {
-    let message;
+    //let message; ${message}
     
     await sendEmail({
         to: account.email,
         subject: 'Attention - Student has reserved a Lab Slot',
-        html: `<h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwapV.labName} !</h4>
-               
-               ${message}`
+        html: `Hello!
+        <br><h4>Student ${account.firstName} ${account.lastName} is now attending lab ${labSwapV.labName}! 
+        <br> 
+        <br> ${account.firstName} ${account.lastName} will not be attending their originally assigned class group lab.
+        <br> </h4>
+        <br> Thank you.`
     });
 }

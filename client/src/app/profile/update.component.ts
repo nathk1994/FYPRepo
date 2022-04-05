@@ -56,11 +56,11 @@ export class UpdateComponent implements OnInit {
     }
 
     onSubmit() {
-        debugger;
-        if (!this.form.get('uploadedImage').value) {
-            alert('Please select an image to upload!');
-            return false;
-          }
+        //debugger;
+        // if (!this.form.get('uploadedImage').value) {
+        //     alert('Please select an image to upload!');
+        //     return false;
+        // }
       
           const formData = new FormData();
           formData.append('uploadedImage', this.form.get('uploadedImage').value);
@@ -103,7 +103,7 @@ export class UpdateComponent implements OnInit {
                     this.loading = false;
                 }
             });
-        debugger;
+        //debugger;
     }
 
     onDelete() {

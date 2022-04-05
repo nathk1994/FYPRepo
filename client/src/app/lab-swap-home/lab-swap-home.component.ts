@@ -265,7 +265,7 @@ export class LabSwapHomeComponent implements OnInit {
     notifyLecturer() { //uses !account! service
             //this.labSwapService.notifyLecturer(this.labSwap);
             debugger;
-            this.accountService.notifyLecturer(this.account, this.labSwapV) //this.labSwap
+            this.accountService.notifyLecturer(this.account) //this.labSwapV
             .pipe(first())
             .subscribe({
                 next: () => {
