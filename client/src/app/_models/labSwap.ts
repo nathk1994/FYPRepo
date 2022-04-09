@@ -10,5 +10,6 @@ export class LabSwap {
     labTime: string;
     classGroup: string;
     availableLabSlotsNumber: number;
+    createdBy: string;
     
 }
