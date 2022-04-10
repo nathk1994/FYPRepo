@@ -1,9 +1,8 @@
 ﻿<div class="p-4">
     <div class="container">
-        <!-- <h1>Welcome {{account.firstName}}!</h1> -->
+
         <h4>Welcome {{account.firstName}}!</h4>
-        <!-- <h2>You can create a lab swap request here!</h2> -->
-        <!-- <p></p> -->
+
         <!-- Button for Lecturer to open lab detail modal -->
         <button style="position:absolute; right: 100px; top:75px;" (click)="openModal('add-modal-1')" *ngIf="isLecturer === true" class="btn btn-primary" >Create Lab</button> <!-- *ngIf="isLecturer === true" -->
         <button style="position:absolute; right: 100px; top:75px;" (click)="openModal('add-modal-1')" *ngIf="isAdmin === true" class="btn btn-primary" >Create Lab</button> <!-- *ngIf="isLecturer === true" -->
@@ -39,10 +38,6 @@
                 <!-- <tr *ngFor="let account of accounts"> -->
                     <!-- <td>{{account.title}} {{account.firstName}} {{account.lastName}}</td> -->
                     <!-- <td>{{account.email}}</td> -->
-
-                    <!-- <td>{{labSwap.swapCandidateOne}}</td> -->
-                    <!-- <td>{{labSwaps.swapRequestDetail}}</td> -->
-                    <!-- <td>{{labSwap.swapRequestDetail}}</td> -->
                     <!-- <td>{{account.role}}</td> -->
 
                     <td>{{labSwap.labName}}</td>
@@ -77,24 +72,6 @@
         <!-- Modal -->
         <nk-modal id="add-modal-1">
             <form [formGroup]="labSwapForm">
-                <!-- <div class="form-group col-4">
-                    <h1>Testing</h1>
-                    <label>*Your Full Name</label>
-                    <input type="text" formControlName="swapCandidateOne" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
-                    <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
-                        <div *ngIf="f.swapCandidateOne.errors.required">Full Name is required</div>
-                    </div>
-                </div>
-            
-                <div class="form-group col-4">
-                    <label>*Lab Swap Request Details</label>
-                    <input type="text" formControlName="swapRequestDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
-                    <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
-                        <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
-                    </div>
-                </div>
-
-                <hr class="rounded"> -->
                 
                 <h5 class="modal-title">Please Enter The Lab Details</h5>
                 <div class="modal-header"></div>
@@ -197,22 +174,6 @@
         <!-- Modal -->
         <nk-modal id="edit-modal-1">
             <form [formGroup]="labSwapForm">
-                <!-- <div class="form-group col-4">
-                    <h1>Testing</h1>
-                    <label>*Your Full Name</label>
-                    <input type="text" formControlName="swapCandidateOne" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapCandidateOne.errors }" />
-                    <div *ngIf="submitted && f.swapCandidateOne.errors" class="invalid-feedback">
-                        <div *ngIf="f.swapCandidateOne.errors.required">Full Name is required</div>
-                    </div>
-                </div>
-            
-                <div class="form-group col-4">
-                    <label>*Lab Swap Request Details</label>
-                    <input type="text" formControlName="swapRequestDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.swapRequestDetail.errors }" />
-                    <div *ngIf="submitted && f.swapRequestDetail.errors" class="invalid-feedback">
-                        <div *ngIf="f.swapRequestDetail.errors.required">Lab Swap Details are required</div>
-                    </div>
-                </div>
 
                 <hr class="rounded"> -->
                 <h2>Please Enter The Lab Details</h2>
