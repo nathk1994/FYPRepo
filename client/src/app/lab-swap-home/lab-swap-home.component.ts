@@ -225,7 +225,7 @@ export class LabSwapHomeComponent implements OnInit {
 
         //this. = this.labSwapService.getAll();
         this.modalService.close("add-modal-1");
-        this.reload(); // will cause form submission cancelled error in console but sends from anyway..
+        this.reload(); // will cause form submission cancelled error in console but sends form anyway..
         //post(this.account.email => this.labSwap.createdBy.value);
     }
 
@@ -265,7 +265,7 @@ export class LabSwapHomeComponent implements OnInit {
     notifyLecturer() { //uses !account! service
             //this.labSwapService.notifyLecturer(this.labSwap);
             debugger;
-            this.accountService.notifyLecturer(this.account) //this.labSwapV
+            this.accountService.notifyLecturer(this.account) //this.labSwapV 
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -281,29 +281,8 @@ export class LabSwapHomeComponent implements OnInit {
     }
 }
 
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { AccountService, AlertService, LabSwapService } from '@app/_services';
-// import { first } from 'rxjs/operators';
 
 
-// @Component({ templateUrl: 'lab-swap-home.component.html' })
-// export class LabSwapHomeComponent {
-//     account = this.accountService.accountValue;
-//     labSwap = this.labSwapService.labSwapValue;
-//     loading = false;
-//     submitted = false;
-//     labSwapForm: FormGroup;
-
-//     constructor(
-//         private accountService: AccountService,
-//         private labSwapService: LabSwapService,
-//         private formBuilder: FormBuilder,
-//         private router: Router,
-//         private alertService: AlertService,
-//         private route: ActivatedRoute,
-//     ) { }
 
 //     ngOnInit() {
 //         this.labSwapForm = this.formBuilder.group({
@@ -315,9 +294,7 @@ export class LabSwapHomeComponent implements OnInit {
 //         });
 //     }
 
-//     get f() { 
-//         return this.labSwapForm.controls; 
-//     }
+
 
 //     onSubmit() {
 //         debugger;

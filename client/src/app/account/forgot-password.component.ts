@@ -22,7 +22,7 @@ export class ForgotPasswordComponent implements OnInit {
         });
     }
 
-    // convenience getter for easy access to form fields
+    // convenience getter for easy access to form fields 
     get f() { return this.form.controls; }
 
     onSubmit() {

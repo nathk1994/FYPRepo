@@ -8,6 +8,6 @@ import { ModalComponent } from './modal.component';
     imports: [CommonModule],
     declarations: [ModalComponent],
     exports: [ModalComponent],
-   // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+   // schemas: [ CUSTOM_ELEMENTS_SCHEMA ] 
 })
 export class ModalModule { }

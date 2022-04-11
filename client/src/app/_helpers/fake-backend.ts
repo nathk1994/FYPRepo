@@ -346,7 +346,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function currentAccount() {
-            // check if jwt token is in auth header
+            // check if jwt token is in auth header 
             const authHeader = headers.get('Authorization');
             if (!authHeader.startsWith('Bearer fake-jwt-token')) return;
 

@@ -9,8 +9,6 @@ function model(sequelize) {
         swapCandidateOne: { type: DataTypes.STRING, allowNull: true },
         swapCandidateTwo: { type: DataTypes.STRING, allowNull: true },
         isSwapComplete: { type: DataTypes.BOOLEAN },
-        //firstName: { type: DataTypes.STRING, allowNull: false },
-        //lastName: { type: DataTypes.STRING, allowNull: false },
         labName: { type: DataTypes.STRING, allowNull: true },
         labDate: { type: DataTypes.STRING, allowNull: true },
         labTime: { type: DataTypes.STRING, allowNull: true },

@@ -12,7 +12,7 @@ import { LabSwapHomeComponent } from './lab-swap-home';
 import { ModalModule } from './_modal';
 //import { ModalComponent } from './_modal/modal.component';
 
-// used to create fake backend
+// used to create fake backend 
 //import { fakeBackendProvider } from './_helpers';
 
 

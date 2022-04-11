@@ -35,7 +35,7 @@ function model(sequelize) {
             attributes: { exclude: ['passwordHash'] }
         },
         scopes: {
-            // include hash with this scope
+            // include hash with this scope 
             withHash: { attributes: {}, }
         }        
     };

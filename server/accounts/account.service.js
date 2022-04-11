@@ -316,7 +316,7 @@ async function notifyLecturer(params, origin) {
 }
 
 async function sendNotifyLecturerEmail(account, labSwapV) {
-    //let message; ${message}
+    //let message; ${message} 
     
     await sendEmail({
         to: account.email,

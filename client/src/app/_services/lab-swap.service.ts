@@ -60,23 +60,6 @@ export class LabSwapService {
     // }
 }
 
-// import { Injectable } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { HttpClient } from '@angular/common/http';
-// import { BehaviorSubject, Observable } from 'rxjs';
-// import { map, finalize } from 'rxjs/operators';
-
-// import { environment } from '@environments/environment';
-// import { LabSwap } from '@app/_models';
-
-// //const baseUrl = `${environment.apiUrl}/accounts`;
-// const baseUrl = `${environment.apiUrl}/lab-swaps`;
-// //const baseUrl = `${environment.apiUrl}/lab-swap-home`;
-
-// @Injectable({ providedIn: 'root' })
-// export class LabSwapService {
-//     private labSwapSubject: BehaviorSubject<LabSwap>;
-//     public labSwap: Observable<LabSwap>;
 
 //     constructor(
 //         private router: Router,
@@ -89,31 +72,6 @@ export class LabSwapService {
 //     public get labSwapValue(): LabSwap {
 //         return this.labSwapSubject.value;
 //     }
-
-//     // login(email: string, password: string) {
-//     //     return this.http.post<any>(`${baseUrl}/authenticate`, { email, password }, { withCredentials: true })
-//     //         .pipe(map(labSwap => {
-//     //             this.labSwapSubject.next(labSwap);
-//     //             this.startRefreshTokenTimer();
-//     //             return labSwap;
-//     //         }));
-//     // }
-
-//     logout() {
-//         this.http.post<any>(`${baseUrl}/revoke-token`, {}, { withCredentials: true }).subscribe();
-//         this.stopRefreshTokenTimer();
-//         this.labSwapSubject.next(null);
-//         this.router.navigate(['/account/login']);
-//     }
-
-//     // refreshToken() {
-//     //     return this.http.post<any>(`${baseUrl}/refresh-token`, {}, { withCredentials: true })
-//     //         .pipe(map((labSwap) => {
-//     //             this.labSwapSubject.next(labSwap);
-//     //             this.startRefreshTokenTimer();
-//     //             return labSwap;
-//     //         }));
-//     // }
 
 //     getAll() {
 //         return this.http.get<LabSwap[]>(baseUrl);
@@ -148,22 +106,3 @@ export class LabSwapService {
 //     //                 this.logout();
 //     //         }));
 //     // }
-
-//     // helper methods
-
-//     private refreshTokenTimeout;
-
-//     // private startRefreshTokenTimer() {
-//     //     // parse json object from base64 encoded jwt token
-//     //     const jwtToken = JSON.parse(atob(this.labSwapValue.jwtToken.split('.')[1]));
-
-//     //     // set a timeout to refresh the token a minute before it expires
-//     //     const expires = new Date(jwtToken.exp * 1000);
-//     //     const timeout = expires.getTime() - Date.now() - (60 * 1000);
-//     //     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-//     // }
-
-//     private stopRefreshTokenTimer() {
-//         clearTimeout(this.refreshTokenTimeout);
-//     }
-// }

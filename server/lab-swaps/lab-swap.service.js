@@ -5,13 +5,7 @@ const sendEmail = require('_helpers/send-email');
 
 module.exports = {
     // authenticate,
-    // refreshToken,
-    // revokeToken,
-    // register,
     // verifyEmail,
-    // forgotPassword,
-    // validateResetToken,
-    // resetPassword,
     getAllLabSwaps,
     getLabSwapById,
     create,

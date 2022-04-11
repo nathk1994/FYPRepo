@@ -12,9 +12,6 @@ export class RegisterComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
-    //email: any;
-    //isLecturer: boolean = true;
-    //isLecturer: any; //
 
     constructor(
         private formBuilder: FormBuilder,
@@ -34,19 +31,16 @@ export class RegisterComponent implements OnInit {
             confirmPassword: ['', Validators.required],
             acceptTerms: [false, Validators.requiredTrue],
             accountClassGroup: [''],
-            //isLecturer: ['', Validators.required],
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
     }
 
-    // convenience getter for easy access to form fields
+    // convenience getter for easy access to form fields 
     get f() { return this.form.controls; }
 
     onSubmit() {
         this.submitted = true;
-
-        //this.isTestEmail();
 
         // reset alerts on submit
         this.alertService.clear();
