@@ -88,6 +88,7 @@ export class LabSwapHomeComponent implements OnInit {
             labTime: ['', Validators.required],
             classGroup: ['', Validators.required],
             availableLabSlotsNumber: ['', Validators.required],
+            createdBy: [this.account.email],
             //password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
             //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
         }); //formOptions
