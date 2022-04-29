@@ -7,10 +7,10 @@ nk-modal {
     .nk-modal {
         /* modal container fixed across whole screen */
         position: fixed;
-        top: 0;
+        top: 100px;
         right: 0; //900
         bottom: 0;
-        left: 0;
+        left: 190px;
 
         /* z-index must be higher than .nk-modal-background */
         z-index: 1000;
@@ -19,11 +19,14 @@ nk-modal {
         overflow: auto;
 
         .nk-modal-body {
+            border-radius: 15px;
             padding: 20px;
             background: #fff;
 
             /* margin exposes part of the modal background */
             margin: 40px;
+            width: 400px;
+            height: 620px;
         }
     }
 

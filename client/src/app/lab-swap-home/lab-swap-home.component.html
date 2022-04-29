@@ -73,8 +73,8 @@
         <nk-modal id="add-modal-1">
             <form [formGroup]="labSwapForm">
                 
-                <h5 class="modal-title">Please Enter The Lab Details</h5>
-                <div class="modal-header"></div>
+                <h4 class="modal-title">Please Enter The Lab Details</h4>
+                <div class="modal-header mb-2"></div>
                 <div class="form-group col-8">
                     <label>*Lab Module Name</label>
                     <input type="text" formControlName="labName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labName.errors }" />
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             
-                <div class="form-group col-5">
+                <div class="form-group col-8">
                     <label>*Week Day</label>
                     <!-- <input type="text" formControlName="labDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labDate.errors }" />
                     <div *ngIf="submitted && f.labDate.errors" class="invalid-feedback">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-5">
+                <div class="form-group col-8">
                     <label>*Lab Time</label>
                     <!-- <input type="text" formControlName="labTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.labTime.errors }" />
                     <div *ngIf="submitted && f.labTime.errors" class="invalid-feedback">
@@ -137,7 +137,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-5">
+                <div class="form-group col-8">
                     <label>*Class Group</label>
                     <input type="text" formControlName="classGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classGroup.errors }" />
                     <div *ngIf="submitted && f.classGroup.errors" class="invalid-feedback">
@@ -145,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-5">
+                <div class="form-group col-8">
                     <label>*No. Of Available Lab Slots</label>
                     <input type="number" formControlName="availableLabSlotsNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.availableLabSlotsNumber.errors }" />
                     <div *ngIf="submitted && f.availableLabSlotsNumber.errors" class="invalid-feedback">
