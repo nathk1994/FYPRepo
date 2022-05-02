@@ -11,5 +11,5 @@ export class LabSwap {
     classGroup: string;
     availableLabSlotsNumber: number;
     createdBy: string;
-    
+    room: string;
 }

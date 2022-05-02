@@ -25,6 +25,7 @@
                     <!-- <th style="width:30%">Email</th> -->
                     <th style="width:10%">Week Day</th>
                     <th style="width:10%">Lab Time</th>
+                    <th style="width:10%">Room</th>
                     <th style="width:10%">Class Group</th>
                     <th style="width:10%">Slots Available</th>
                     <!-- <th style="width:30%">Role</th> -->
@@ -43,6 +44,7 @@
                     <td>{{labSwap.labName}}</td>
                     <td>{{labSwap.labDate}}</td>
                     <td>{{labSwap.labTime}}</td>
+                    <td>{{labSwap.room}}</td>
                     <td>{{labSwap.classGroup}}</td>
                     <td>{{labSwap.availableLabSlotsNumber}}</td>
                     <td style="white-space: nowrap">
@@ -142,6 +144,14 @@
                     <input type="text" formControlName="classGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classGroup.errors }" />
                     <div *ngIf="submitted && f.classGroup.errors" class="invalid-feedback">
                         <div *ngIf="f.classGroup.errors.required">Class Group is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-8">
+                    <label>*Room</label>
+                    <input type="text" formControlName="room" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.room.errors }" />
+                    <div *ngIf="submitted && f.room.errors" class="invalid-feedback">
+                        <div *ngIf="f.room.errors.required">Room is required</div>
                     </div>
                 </div>
 
