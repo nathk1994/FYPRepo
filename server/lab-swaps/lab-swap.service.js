@@ -14,26 +14,37 @@ module.exports = {
     notifyLecturer
 };
 
-async function notifyLecturer(params, origin) {
-    // create account object
-    const account = new db.Account(params);
-
-    // create labSwap object
-    const labSwap = new db.LabSwap(params);
+async function notifyLecturer(origin) {
+    const labSwap = origin.params;
+    const account = origin.account;
 
     // send email
-    await sendNotifyLecturerEmail(account, labSwap, origin);
+    await sendNotifyLecturerEmail(labSwap, account);
 }
 
-async function sendNotifyLecturerEmail(account, labSwap) {
-    let message;
+async function sendNotifyLecturerEmail(labSwap, account) {
+    //let message;
     
     await sendEmail({
+        to: labSwap.createdBy,
+        subject: `Attention - Student ${account.firstName} ${account.lastName} has reserved a Lab Slot`,
+        html: `Hello!
+        <br><h4>Student ${account.firstName} ${account.lastName} is now attending the ${labSwap.labTime} lab on ${labSwap.labDate}s for the "${labSwap.labName}" Module!   
+        <br> 
+        <br> ${account.firstName} ${account.lastName} will not be attending their originally assigned default class group lab time.
+        <br> </h4>
+        <br> Thank you.`
+    });
+
+    await sendEmail({
         to: account.email,
-        subject: 'Attention - Student is Applying for a Lab Slot',
-        html: `<h4>Student ${account.firstName} ${account.lastName} Attending ${labSwap.labName}</h4>
-               <p>Student ${account.firstName} Attending ${labSwap.labName}!</p>
-               ${message}`
+        subject: 'Reminder - You have reserved a Lab Slot',
+        html: `Hello!
+        <br><h4>You are now attending the ${labSwap.labTime} lab on ${labSwap.labDate}s for the "${labSwap.labName}" Module! 
+        <br> 
+        <br> Instead of your originally assigned default class group lab time.
+        <br> </h4>
+        <br> Thank you.`
     });
 }
 
@@ -51,7 +62,10 @@ async function create(params) {
     //    throw 'Email "' + params.email + '" is already registered';
     //}
 
+    // create labSwap object
     const labSwap = new db.LabSwap(params);
+
+    // put current date in 'labSwap.verified' property
     labSwap.verified = Date.now();
 
     // hash a password if needed

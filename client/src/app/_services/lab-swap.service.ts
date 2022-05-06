@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { environment } from '@environments/environment';
 import { LabSwap } from '@app/_models';
-// import { BehaviorSubject } from 'rxjs';
-
 import { Account } from '@app/_models';
 import { BehaviorSubject, Observable } from 'rxjs';
+
 const baseUrl = `${environment.apiUrl}/lab-swaps`;
 
 @Injectable({ providedIn: 'root' })
@@ -14,8 +12,9 @@ export class LabSwapService {
     private labSwapSubject: BehaviorSubject<LabSwap>;
     public labSwap: Observable<LabSwap>;
 
-    constructor(private http: HttpClient
-        ) { 
+    constructor(
+        private http: HttpClient
+    ) { 
         this.labSwapSubject = new BehaviorSubject<LabSwap>(null);
         this.labSwap = this.labSwapSubject.asObservable();
     }
@@ -44,12 +43,13 @@ export class LabSwapService {
         return this.http.delete(`${baseUrl}/${id}`);
     }
 
+    notifyLecturer(params: any, account: Account) {
+        return this.http.post(`${baseUrl}/notifyLecturer`, {params, account}); 
+        
+    }
+
     // notifyLecturer(account: Account) {
     //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
-    // }
-
-    // notifyLecturer(labSwap: LabSwap) {
-    //     return this.http.post(`${baseUrl}/notifyLecturer`, labSwap);
     // }
 
     // createdBy(labSwap: LabSwap): Observable<LabSwap> {

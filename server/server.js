@@ -34,7 +34,7 @@ app.listen(port, () => console.log('Server listening on port ' + port));
 
 // Basic Get Route
 app.get('/', function (req, res) {
-    res.json({ message: 'Server Started!' });
+    res.json({ message: 'FYP Server Started!' });
 });
 
 

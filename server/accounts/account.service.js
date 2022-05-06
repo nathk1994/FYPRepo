@@ -21,7 +21,7 @@ module.exports = {
     create,
     update,
     delete: _delete,
-    notifyLecturer
+    //notifyLecturer
 };
 
 async function authenticate({ email, password, ipAddress }) {

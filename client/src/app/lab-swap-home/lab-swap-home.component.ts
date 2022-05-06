@@ -11,11 +11,11 @@ import { Account } from '@app/_models/account';
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
     account = this.accountService.accountValue;
-    labSwapV = this.labSwapService.labSwapValue;
+    labSwap = this.labSwapService.labSwapValue;
     isAdmin: boolean = false
     isLecturer: boolean = false
     isStudent: boolean = false
-    labSwap: LabSwap;
+    //labSwap: LabSwap;
     //account: Account;
     labSwapForm!: FormGroup;
     id!: string;
@@ -263,10 +263,9 @@ export class LabSwapHomeComponent implements OnInit {
             });
     }
 
-    notifyLecturer() { //uses !account! service
-            //this.labSwapService.notifyLecturer(this.labSwap);
-            debugger;
-            this.accountService.notifyLecturer(this.account) //this.labSwapV 
+    notifyLecturer(id: string) { 
+        const labSwap = this.labSwaps.find(x => x.id === id);
+        this.labSwapService.notifyLecturer(labSwap, this.account) //this.labSwapV 
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -278,7 +277,6 @@ export class LabSwapHomeComponent implements OnInit {
                     this.loading = false;
                 }
             });
-            debugger;
     }
 }
 
