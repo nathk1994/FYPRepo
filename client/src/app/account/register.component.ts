@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
+    emailRegex ='^[A-Za-z0-9._%+-]+@(mtu\.ie|mycit\.ie|cit\.ie)$'; 
 
     constructor(
         private formBuilder: FormBuilder,
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
             title: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required, Validators.pattern(this.emailRegex)]], //was "Validators.email"
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', Validators.required],
             acceptTerms: [false, Validators.requiredTrue],
