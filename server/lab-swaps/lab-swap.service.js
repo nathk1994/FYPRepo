@@ -31,7 +31,7 @@ async function sendNotifyLecturerEmail(labSwap, account) {
         html: `Hello!
         <br><h4>Student ${account.firstName} ${account.lastName} is now attending the ${labSwap.labTime} lab on ${labSwap.labDate}s for the "${labSwap.labName}" Module!   
         <br> 
-        <br> ${account.firstName} ${account.lastName} will not be attending their originally assigned default class group lab time.
+        <br> ${account.firstName} ${account.lastName} will not be attending their originally assigned default class group lab time for this module.
         <br> </h4>
         <br> Thank you.`
     });
@@ -42,7 +42,7 @@ async function sendNotifyLecturerEmail(labSwap, account) {
         html: `Hello!
         <br><h4>You are now attending the ${labSwap.labTime} lab on ${labSwap.labDate}s for the "${labSwap.labName}" Module! 
         <br> 
-        <br> Instead of your originally assigned default class group lab time.
+        <br> Instead of your originally assigned default class group lab time for this module.
         <br> </h4>
         <br> Thank you.`
     });

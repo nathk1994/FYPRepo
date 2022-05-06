@@ -51,6 +51,7 @@ export class LabSwapHomeComponent implements OnInit {
     ngOnInit() { // void?
         this.retrieveAccounts();
         this.retrieveLabSwaps();
+        //this.labSwaps = this.labSwaps.filter(labSwap => this.labSwap.createdBy === this.account.email);
         // this.getLabSwap(this.route.snapshot.paramMap.get('id'));
         // this.labSwapService.getAll()
         // .subscribe(
@@ -182,7 +183,7 @@ export class LabSwapHomeComponent implements OnInit {
         this.labSwapService.getAll()
           .subscribe(
             data => {
-              this.labSwaps = data;
+              this.labSwaps = data //.filter(labSwap => labSwap.createdBy === this.account.email);;
               console.log(data);
             },
             error => {
