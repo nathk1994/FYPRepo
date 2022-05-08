@@ -104,6 +104,7 @@ export class LabSwapHomeComponent implements OnInit {
         this.isAdminEmail();
         this.isStudentEmail();
         this.isLecturerEmail();
+        this.isLecturerEmail2();
     }
 
     ngOnDestroy(){
@@ -171,6 +172,24 @@ export class LabSwapHomeComponent implements OnInit {
         //}
     }
 
+    public isLecturerEmail2() { 
+
+        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        // if(re.test(email)){
+            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
+            if(this.account.email.indexOf("@cit.ie", this.account.email.length - "@cit.ie".length) !== -1){
+                //VALID
+                console.log("LECTURER EMAIL 2 VALID");
+                //this.form.controls.isStudent.patchValue('1'); // Intended way.
+                this.isLecturer = true; // optional way, working!
+            }
+            else{
+                console.log("LECTURER EMAIL 2 INVALID");
+            }
+
+        //}
+    }
+
     openModal(id: string) {
         this.modalService.open(id);
     }
@@ -183,7 +202,7 @@ export class LabSwapHomeComponent implements OnInit {
         this.labSwapService.getAll()
           .subscribe(
             data => {
-              this.labSwaps = data //.filter(labSwap => labSwap.createdBy === this.account.email);;
+              this.labSwaps = data.filter(labSwap => labSwap.createdBy === this.account.email);;
               console.log(data);
             },
             error => {

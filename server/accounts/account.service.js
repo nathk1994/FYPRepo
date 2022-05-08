@@ -260,10 +260,10 @@ async function sendVerificationEmail(account, origin) {
 
     await sendEmail({
         to: account.email,
-        subject: 'Lab Management Resoure - Verify Email',
+        subject: 'Module Lab Resoure - Verify Email',
         html: `<h4>Please Verify Your Email</h4>
                <p>Hello!
-               <br>Thank you for registering to access the lab managment resource!</p>
+               <br>Thank you for registering to access the Module Lab Resource!</p>
                ${message}`
     });
 }
@@ -278,7 +278,7 @@ async function sendAlreadyRegisteredEmail(email, origin) {
 
     await sendEmail({
         to: email,
-        subject: 'Lab Management Resoure - Email Already Registered',
+        subject: 'Module Lab Resoure - Email Already Registered',
         html: `<h4>Email Already Registered</h4>
                <p>Your email <strong>${email}</strong> is already registered.</p>
                ${message}`
@@ -298,7 +298,7 @@ async function sendPasswordResetEmail(account, origin) {
 
     await sendEmail({
         to: account.email,
-        subject: 'Lab Management Resoure - Reset Password',
+        subject: 'Module Lab Resoure - Reset Password',
         html: `<h4>Reset Password Email</h4>
                ${message}`
     });
