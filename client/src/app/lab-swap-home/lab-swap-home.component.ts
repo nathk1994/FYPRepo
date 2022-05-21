@@ -307,14 +307,16 @@ export class LabSwapHomeComponent implements OnInit {
     }
 
     public deleteLabSwap(id: string) {
-        const labSwap = this.labSwaps.find(x => x.id === id);
-        labSwap.isDeleting = true;
-        this.labSwapService.delete(id)
-            .pipe(first())
-            .subscribe(() => {
-                this.alertService.success('Lab Swap Deleted', { keepAfterRouteChange: true });
-                this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
-            });
+        if (confirm('Are you sure you want to delete this lab?')) {
+            const labSwap = this.labSwaps.find(x => x.id === id);
+            labSwap.isDeleting = true;
+            this.labSwapService.delete(id)
+                .pipe(first())
+                .subscribe(() => {
+                    this.alertService.success('Lab Swap Deleted', { keepAfterRouteChange: true });
+                    this.labSwaps = this.labSwaps.filter(x => x.id !== id) 
+                });
+        }
     }
 
     notifyLecturer(id: string) { 
