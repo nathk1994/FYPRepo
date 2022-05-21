@@ -6,10 +6,13 @@
             <label>Title</label>
             <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
                 <option value=""></option>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Miss">Miss</option>
-                <option value="Ms">Ms</option>
+                    <option value="Sir">Sir</option>
+                    <option value="Dr">Dr</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Prefer Not To Say">Prefer Not To Say</option>
             </select>
             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                 <div *ngIf="f.title.errors.required">Title is required</div>
@@ -31,7 +34,14 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-7">
+        <div class="form-group col">
+            <label>Class Group</label>
+            <input type="text" formControlName="accountClassGroup" oninput="this.value = this.value.toUpperCase()" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.accountClassGroup.errors }" />
+            <div *ngIf="submitted && f.accountClassGroup.errors" class="invalid-feedback">
+                <div *ngIf="f.accountClassGroup.errors.required">Class Group is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
             <label>Email</label>
             <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -39,7 +49,7 @@
                 <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
             </div>
         </div>
-        <div class="form-group col">
+        <div class="form-group col-5">
             <label>Role</label>
             <select formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
                 <option value=""></option>

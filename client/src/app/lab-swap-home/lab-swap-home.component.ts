@@ -55,10 +55,14 @@ export class LabSwapHomeComponent implements OnInit {
         this.isLecturerEmail2();
 
         this.retrieveAccounts();
+
         if (this.isLecturer == true)
             this.retrieveLabSwapsByCreator();
-        else
+        else if (this.isAdmin == true)
             this.retrieveLabSwaps();
+        else if (this.isStudent == true)
+            this.retrieveLabSwapsByClassGroup();
+
         //this.labSwaps = this.labSwaps.filter(labSwap => this.labSwap.createdBy === this.account.email);
         // this.getLabSwap(this.route.snapshot.paramMap.get('id'));
         // this.labSwapService.getAll()
@@ -201,6 +205,18 @@ export class LabSwapHomeComponent implements OnInit {
 
     public closeModal(id: string) {
         this.modalService.close(id);
+    }
+
+    retrieveLabSwapsByClassGroup(): void {
+        this.labSwapService.getAll()
+          .subscribe(
+            data => {
+              this.labSwaps = data.filter(labSwap => labSwap.classGroup === this.account.accountClassGroup);
+              console.log(data);
+            },
+            error => {
+              console.log(error);
+            });
     }
 
     retrieveLabSwapsByCreator(): void {

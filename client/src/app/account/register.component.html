@@ -36,8 +36,8 @@
 
         <div class="form-row">
             <div class="form-group col">
-                <label>Class Group</label>
-                <input type="text" formControlName="accountClassGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.accountClassGroup.errors }" />
+                <label>*Class Group</label>
+                <input type="text" formControlName="accountClassGroup" class="form-control" oninput="this.value = this.value.toUpperCase()" [ngClass]="{ 'is-invalid': submitted && f.accountClassGroup.errors }" />
                 <div *ngIf="submitted && f.accountClassGroup.errors" class="invalid-feedback">
                     <div *ngIf="f.accountClassGroup.errors.required">Class Group is required</div>
                 </div>
