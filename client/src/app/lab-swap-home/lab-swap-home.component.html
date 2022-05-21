@@ -16,8 +16,9 @@
         <hr class="rounded">
 
         <!-- <h1>Current Lab Swaps</h1> -->
-        <h4 *ngIf="isLecturer === true" >Here are the Labs that you have created:</h4>
-        <h4 *ngIf="isStudent === true" >Here are the Labs with additional slots available:</h4>
+        <p *ngIf="isLecturer === true" >Here are the Labs that you have created:</p>
+        <p *ngIf="isStudent === true" >Here are the Labs with additional slots available:</p>
+        <p *ngIf="isAdmin === true" >Here are all the created Labs:</p>
         <!-- <a routerLink="add" class="btn btn-sm btn-success ml-3 mb-2">Create Lab Swap Request</a> -->
         <table class="table table-striped">
             <thead>
