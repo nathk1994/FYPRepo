@@ -272,11 +272,12 @@ export class LabSwapHomeComponent implements OnInit {
         }
 
         this.loading = true;
-        if (this.isAddMode) {
-            this.createLabSwap();
-        } else {
-            this.updateLabSwap(this.id);
-        }
+        this.createLabSwap();
+        // if (this.isAddMode) {
+        //     this.createLabSwap();
+        // } else {
+        //     this.updateLabSwap(this.id);
+        // }
 
         //this. = this.labSwapService.getAll();
         this.modalService.close("add-modal-1");
