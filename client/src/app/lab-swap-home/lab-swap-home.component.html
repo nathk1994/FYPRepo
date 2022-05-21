@@ -142,7 +142,7 @@
 
                 <div class="form-group col-8">
                     <label>*Class Group</label>
-                    <input type="text" formControlName="classGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classGroup.errors }" />
+                    <input type="text" formControlName="classGroup" oninput="this.value = this.value.toUpperCase()" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.classGroup.errors }" />
                     <div *ngIf="submitted && f.classGroup.errors" class="invalid-feedback">
                         <div *ngIf="f.classGroup.errors.required">Class Group is required</div>
                     </div>
