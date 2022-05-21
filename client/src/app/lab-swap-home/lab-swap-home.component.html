@@ -59,7 +59,7 @@
                             <span *ngIf="labSwap.isDeleting" class="spinner-border spinner-border-sm"></span>
                             <span *ngIf="!labSwap.isDeleting">Delete</span>
                         </button> -->
-                        <button (click)="notifyLecturer(labSwap.id)" *ngIf="isStudent === true" class="btn btn-sm btn-success ml-1">Reserve Slot</button>
+                        <button [disabled]="clicked" (click)="notifyLecturer(labSwap.id); clicked = true;" *ngIf="isStudent === true" class="btn btn-sm btn-success ml-1">Reserve Slot</button>
                         <button (click)="notifyLecturer(labSwap.id)" *ngIf="isAdmin === true" class="btn btn-sm btn-success ml-1">Reserve Slot</button>
                     </td>
                 <!-- </tr> -->

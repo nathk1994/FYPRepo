@@ -15,6 +15,7 @@ export class LabSwapHomeComponent implements OnInit {
     isAdmin: boolean = false
     isLecturer: boolean = false
     isStudent: boolean = false
+    clicked = false;
     //labSwap: LabSwap;
     //account: Account;
     labSwapForm!: FormGroup;
