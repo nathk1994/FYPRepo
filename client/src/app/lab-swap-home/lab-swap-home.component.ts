@@ -321,19 +321,21 @@ export class LabSwapHomeComponent implements OnInit {
     }
 
     notifyLecturer(id: string) { 
-        const labSwap = this.labSwaps.find(x => x.id === id);
-        this.labSwapService.notifyLecturer(labSwap, this.account) //this.labSwapV 
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('Lab slot reserved. Lecturer has been notified!', { keepAfterRouteChange: true });
-                    this.router.navigate(['/lab'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
+        if (confirm('Are you sure you want to reserve a slot for this lab?')) {
+            const labSwap = this.labSwaps.find(x => x.id === id);
+            this.labSwapService.notifyLecturer(labSwap, this.account) //this.labSwapV 
+                .pipe(first())
+                .subscribe({
+                    next: () => {
+                        this.alertService.success('Lab slot reserved. Lecturer has been notified!', { keepAfterRouteChange: true });
+                        this.router.navigate(['/lab'], { relativeTo: this.route });
+                    },
+                    error: error => {
+                        this.alertService.error(error);
+                        this.loading = false;
+                    }
+                });
+        }
     }
 }
 
