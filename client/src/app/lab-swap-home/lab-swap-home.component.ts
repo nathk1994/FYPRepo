@@ -49,8 +49,16 @@ export class LabSwapHomeComponent implements OnInit {
     } 
 
     ngOnInit() { // void?
+        this.isAdminEmail();
+        this.isStudentEmail();
+        this.isLecturerEmail();
+        this.isLecturerEmail2();
+
         this.retrieveAccounts();
-        this.retrieveLabSwaps();
+        if (this.isLecturer == true)
+            this.retrieveLabSwapsByCreator();
+        else
+            this.retrieveLabSwaps();
         //this.labSwaps = this.labSwaps.filter(labSwap => this.labSwap.createdBy === this.account.email);
         // this.getLabSwap(this.route.snapshot.paramMap.get('id'));
         // this.labSwapService.getAll()
@@ -64,10 +72,10 @@ export class LabSwapHomeComponent implements OnInit {
         // });
 
         this.id = this.route.snapshot.params['id'];
-        this.isAddMode = !this.id;
-        this.accountService.getAll()
-            .pipe(first())
-            .subscribe(accounts => this.accounts = accounts);
+        // this.isAddMode = !this.id;
+        // this.accountService.getAll()
+        //     .pipe(first())
+        //     .subscribe(accounts => this.accounts = accounts);
 
         // this.labSwapService.getAll()
         //     .pipe(first())
@@ -95,16 +103,13 @@ export class LabSwapHomeComponent implements OnInit {
             //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
         }); //formOptions
 
-        if (!this.isAddMode) { // (!this.isAddMode)
-            this.labSwapService.getById(this.id)
-                .pipe(first())
-                .subscribe(x => this.labSwapForm.patchValue(x));
-        }
+        // if (!this.isAddMode) { // (!this.isAddMode)
+        //     this.labSwapService.getById(this.id)
+        //         .pipe(first())
+        //         .subscribe(x => this.labSwapForm.patchValue(x));
+        // }
 
-        this.isAdminEmail();
-        this.isStudentEmail();
-        this.isLecturerEmail();
-        this.isLecturerEmail2();
+        
     }
 
     ngOnDestroy(){
@@ -198,11 +203,23 @@ export class LabSwapHomeComponent implements OnInit {
         this.modalService.close(id);
     }
 
+    retrieveLabSwapsByCreator(): void {
+        this.labSwapService.getAll()
+          .subscribe(
+            data => {
+              this.labSwaps = data.filter(labSwap => labSwap.createdBy === this.account.email);
+              console.log(data);
+            },
+            error => {
+              console.log(error);
+            });
+    }
+
     retrieveLabSwaps(): void {
         this.labSwapService.getAll()
           .subscribe(
             data => {
-              this.labSwaps = data.filter(labSwap => labSwap.createdBy === this.account.email);;
+              this.labSwaps = data;
               console.log(data);
             },
             error => {
