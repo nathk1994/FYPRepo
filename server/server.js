@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 });
 
 
-// (Multer & S3 Method) allow POST requests and send response. Middleware function to accept a file called 'image'. Multer will check for an 'image' binary data, in the data being sent to my 'server' and store it in the './images' folder.
+// (Later Multer & S3 Method) allow POST requests and send response. Middleware function to accept a file called 'image'. Multer will check for an 'image' binary data, in the data being sent to my 'server' and store it in the './images' folder.
 // app.post('/images', upload.single('image'), (req, res) => {
 //     const file = req.file // file data.
 //     console.log(file) // see what info we get from this in the console.

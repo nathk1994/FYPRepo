@@ -1,4 +1,3 @@
-//import { ModalComponent } from '@app/_modal/modal.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,7 +15,6 @@ import { AddEditComponent } from './add-edit.component';
     declarations: [
         ListComponent,
         AddEditComponent,
-        //ModalComponent
     ]
 })
 export class AccountsModule { }

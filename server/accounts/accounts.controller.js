@@ -20,15 +20,8 @@ router.get('/:id', authorize(), getById);
 router.post('/', authorize(Role.Admin), createSchema, create);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
-//router.post('/notifyLecturer', notifyLecturer);
 
 module.exports = router;
-
-// function notifyLecturer(req, res, next) {
-//     accountService.notifyLecturer(req.body, req.get('origin'))
-//         .then(() => res.json({ message: 'Lecturer notified via email' }))
-//         .catch(next);
-// }
 
 function authenticateSchema(req, res, next) {
     const schema = Joi.object({

@@ -5,12 +5,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
 import { AccountService } from './_services';
-// import { LabSwapService } from './_services'; //new
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { LabSwapHomeComponent } from './lab-swap-home';
 import { ModalModule } from './_modal';
-//import { ModalComponent } from './_modal/modal.component';
 
 // used to create fake backend 
 //import { fakeBackendProvider } from './_helpers';
@@ -24,13 +22,11 @@ import { ModalModule } from './_modal';
         HttpClientModule,
         AppRoutingModule,
         ModalModule,
-        //LabSwapHomeComponent
     ],
 
     declarations: [
         AppComponent,
         AlertComponent,
-        //ModalComponent,
         LabSwapHomeComponent
     ],
 

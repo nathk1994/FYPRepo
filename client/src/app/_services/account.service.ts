@@ -124,11 +124,4 @@ export class AccountService {
         clearTimeout(this.refreshTokenTimeout);
     }
 
-    // remindStudent(account: Account) {
-    //     return this.http.post(`${baseUrl}/notifyLecturer`, account);
-    // }
-
-    // notifyLecturer(account: Account, labSwapV: LabSwap) {
-    //     return this.http.post(`${baseUrl}/notifyLecturer`,  {account, labSwapV})
-    // }
 }

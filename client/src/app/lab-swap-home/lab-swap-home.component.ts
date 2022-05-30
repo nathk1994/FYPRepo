@@ -1,12 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-// import { MustMatch } from '@app/_helpers';
 import { AccountService, LabSwapService, AlertService } from '@app/_services';
-import { LabSwap } from '@app/_models/labSwap';
 import { ModalService } from '../_modal';
-import { Account } from '@app/_models/account';
 
 @Component({ templateUrl: 'lab-swap-home.component.html', styleUrls: ['./lab-swap-home.component.scss'] })
 export class LabSwapHomeComponent implements OnInit {
@@ -15,8 +12,6 @@ export class LabSwapHomeComponent implements OnInit {
     isAdmin: boolean = false
     isLecturer: boolean = false
     isStudent: boolean = false
-    //labSwap: LabSwap;
-    //account: Account;
     labSwapForm!: FormGroup;
     id!: string;
     isAddMode!: boolean;
@@ -26,7 +21,6 @@ export class LabSwapHomeComponent implements OnInit {
     accounts: any[];
     currentLabSwap = null;
     isDeleting;
-    //labSwap?: LabSwap[];
     mySubscription;
 
     constructor(
@@ -63,39 +57,10 @@ export class LabSwapHomeComponent implements OnInit {
         else if (this.isStudent == true)
             this.retrieveLabSwapsByClassGroup();
 
-        //this.labSwaps = this.labSwaps.filter(labSwap => this.labSwap.createdBy === this.account.email);
-        // this.getLabSwap(this.route.snapshot.paramMap.get('id'));
-        // this.labSwapService.getAll()
-        // .subscribe(
-        //   data => {
-        //     this.labSwaps = data;
-        //     console.log(data);
-        //   },
-        //   error => {
-        //     console.log(error);
-        // });
 
         this.id = this.route.snapshot.params['id'];
-        // this.isAddMode = !this.id;
-        // this.accountService.getAll()
-        //     .pipe(first())
-        //     .subscribe(accounts => this.accounts = accounts);
 
-        // this.labSwapService.getAll()
-        //     .pipe(first())
-        //     .subscribe(labSwaps => this.labSwaps = labSwaps);
-        
-        
-        // password not required in edit mode
-        // const passwordValidators = [Validators.minLength(6)];
-        // if (this.isAddMode) {
-        //     passwordValidators.push(Validators.required);
-        // }
-
-        //const formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmPassword') };
         this.labSwapForm = this.formBuilder.group({
-            // swapCandidateOne: ['', Validators.required],
-            // swapRequestDetail: ['', Validators.required],
             labName: ['', Validators.required],
             labDate: ['', Validators.required],
             labTime: ['', Validators.required],
@@ -103,16 +68,7 @@ export class LabSwapHomeComponent implements OnInit {
             room: [''],
             availableLabSlotsNumber: ['', Validators.required],
             createdBy: [this.account.email],
-            //password: ['', [Validators.minLength(6), this.isAddMode ? Validators.required : Validators.nullValidator]],
-            //confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator]
-        }); //formOptions
-
-        // if (!this.isAddMode) { // (!this.isAddMode)
-        //     this.labSwapService.getById(this.id)
-        //         .pipe(first())
-        //         .subscribe(x => this.labSwapForm.patchValue(x));
-        // }
-
+        }); 
         
     }
 
@@ -126,77 +82,51 @@ export class LabSwapHomeComponent implements OnInit {
         this.router.navigate([this.router.url])
     }
 
-    //trying to implment the check here instead, and then set this.isLecturer = true;
+    // Implmented account type check here instead, and then set this.isLecturer = true;
     public isAdminEmail() { 
 
-        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(re.test(email)){
             //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
             if(this.account.email.indexOf("@hotmail.com", this.account.email.length - "@hotmail.com".length) !== -1){
                 //VALID
                 console.log("ADMIN EMAIL VALID");
-                //this.form.controls.isLecturer.patchValue('1'); // Intended way.
-                this.isAdmin = true; // optional way, working!
+                this.isAdmin = true; // working!
             }
             else{
                 console.log("ADMIN EMAIL INVALID");
             }
-
-        //}
     }
 
     public isStudentEmail() { 
-
-        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(re.test(email)){
-            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
             if(this.account.email.indexOf("@mycit.ie", this.account.email.length - "@mycit.ie".length) !== -1){
                 //VALID
                 console.log("STUDENT EMAIL VALID");
-                //this.form.controls.isStudent.patchValue('1'); // Intended way.
-                this.isStudent = true; // optional way, working!
+                this.isStudent = true;
             }
             else{
                 console.log("STUDENT EMAIL INVALID");
             }
-
-        //}
     }
 
     public isLecturerEmail() { 
-
-        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(re.test(email)){
-            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
             if(this.account.email.indexOf("@mtu.ie", this.account.email.length - "@mtu.ie".length) !== -1){
                 //VALID
                 console.log("LECTURER EMAIL VALID");
-                //this.form.controls.isStudent.patchValue('1'); // Intended way.
-                this.isLecturer = true; // optional way, working!
+                this.isLecturer = true;
             }
             else{
                 console.log("LECTURER EMAIL INVALID");
             }
-
-        //}
     }
 
     public isLecturerEmail2() { 
-
-        // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(re.test(email)){
-            //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
             if(this.account.email.indexOf("@cit.ie", this.account.email.length - "@cit.ie".length) !== -1){
                 //VALID
                 console.log("LECTURER EMAIL 2 VALID");
-                //this.form.controls.isStudent.patchValue('1'); // Intended way.
-                this.isLecturer = true; // optional way, working!
+                this.isLecturer = true;
             }
             else{
                 console.log("LECTURER EMAIL 2 INVALID");
             }
-
-        //}
     }
 
     openModal(id: string) {
@@ -258,8 +188,6 @@ export class LabSwapHomeComponent implements OnInit {
     // convenience getter, for easy access to form fields
     get f() { return this.labSwapForm.controls; }
 
-    // get emails() { return this.account.email; }
-
     onSubmit() {
         this.submitted = true;
 
@@ -273,16 +201,8 @@ export class LabSwapHomeComponent implements OnInit {
 
         this.loading = true;
         this.createLabSwap();
-        // if (this.isAddMode) {
-        //     this.createLabSwap();
-        // } else {
-        //     this.updateLabSwap(this.id);
-        // }
-
-        //this. = this.labSwapService.getAll();
         this.modalService.close("add-modal-1");
         this.reload(); // will cause form submission cancelled error in console but sends form anyway..
-        //post(this.account.email => this.labSwap.createdBy.value);
     }
 
     private createLabSwap() {
@@ -291,7 +211,6 @@ export class LabSwapHomeComponent implements OnInit {
             .subscribe(() => {
                 this.alertService.success('Lab Swap Created', { keepAfterRouteChange: true });
                 this.router.navigate(['/lab'], { relativeTo: this.route });
-                //this.router.navigate(['/'], { relativeTo: this.route });
             })
             .add(() => this.loading = false);
             
@@ -338,46 +257,3 @@ export class LabSwapHomeComponent implements OnInit {
         }
     }
 }
-
-
-
-
-//     ngOnInit() {
-//         this.labSwapForm = this.formBuilder.group({
-//             //id: this.formBuilder.control(null, Validators.required),
-//             swapCandidateOne: this.formBuilder.control(null),
-//             swapRequestDetail: this.formBuilder.control(null)
-//             // swapCandidateOne: [this.labSwap.swapCandidateOne, Validators.required],
-//             // swapRequestDetail: [this.labSwap.swapRequestDetail, Validators.required],
-//         });
-//     }
-
-
-
-//     onSubmit() {
-//         debugger;
-
-//         // reset alerts on submit
-//         //this.alertService.clear();
-
-//         // stop here if form is invalid
-//         if (this.labSwapForm.invalid) {
-//             return;
-//         }
-
-//         this.loading = true;
-//         this.labSwapService.update(this.labSwap.id, this.labSwapForm.value) //issue with id here
-//             .pipe(first())
-//             .subscribe({
-//                 next: () => {
-//                     this.alertService.success('Lab Swap Created successfully', { keepAfterRouteChange: true });
-//                     this.router.navigate(['../'], { relativeTo: this.route });
-//                 },
-//                 error: error => {
-//                     this.alertService.error(error);
-//                     this.loading = false;
-//                 }
-//             });
-//         debugger;
-//     }
-// }
