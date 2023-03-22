@@ -10,11 +10,11 @@ The functionality is driven by 'lecturers' and 'students' working together to cr
 - Bootstrap is used to ensure mobile devices can access the application without UI difficulties.
 - The application makes use of the JavaScript Web Token for request authtentication.
 - Node.js for high-performing and compact back-end server in combination with a MySQL database.
-- Users are granted access to register with the application, only if they hold a pre-generated & valid, college email address.
-- 'Lecturers' are 'notified' via email, that a 'student' has 'reserved a slot' in a 'Class Lab'.
+- Users are granted access to register with the application, only if they hold a valid college email address.
+- 'Lecturers' are 'notified' via email, that a 'student' has 'reserved a slot' in a 'Class Lab Group'.
 
 These are technologies that I have worked with in the past during a previous software engineering internship and education. Working with these technologies was both fun and challenging and allowed me to continously learn. 
-My DevOps knowledge grew (specificlally Apache web server, while attempting AWS and Docker deployments) and I successfully overcame the challenges and blockers that came with deploying a full-stack application on the internet.
+My general programming, Angular/TypeScript & DevOps knowledge grew (specificlally Apache web server, while attempting AWS and Docker deployments) as I successfully overcame the challenges and blockers that came with deploying a full-stack application on the internet.
 
 ## Application Pages
 Admin 'Lab Resource' View:
