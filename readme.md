@@ -27,6 +27,7 @@ Login View:
 ![login View](https://i.imgur.com/GhkUxyK.png)
 
 Register View:
+
 ![Register View](https://i.imgur.com/7uPQYlF.png)
 
 Profile View:
@@ -40,8 +41,10 @@ Profile Edit View:
 
 ## Architecture
 Architecture Overview:
+
 ![Application Architecture](https://i.imgur.com/uErNJBP.png)
 
 ## Use Case
 Use Case showing the different users:
+
 ![Use Case showing the different users](https://i.imgur.com/YpaW6NB.png)
