@@ -1,4 +1,4 @@
-# <Student-Lab-Manager>
+# Student Lab Manager
 
 ## Description
 
@@ -16,10 +16,10 @@ These are technologies that I have worked with in the past during a previous sof
 My DevOps knowledge grew (specificlally Apache web server, while attempting AWS and Docker deployments) and I successfully overcame the challenges and blockers that came with deploying a full-stack application on the internet.
 
 ## Application Pages
-![Admin View](https://imgur.com/L9JoaaA)
+![Admin View](https://i.imgur.com/L9JoaaA.png)
 
 ## Architecture
-![Application Architecture](https://imgur.com/uErNJBP)
+![Application Architecture](https://i.imgur.com/uErNJBP.png)
 
 ## Use Case
-![Use Case showing the different users](https://imgur.com/YpaW6NB)
+![Use Case showing the different users](https://i.imgur.com/YpaW6NB.png)
