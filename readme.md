@@ -11,15 +11,37 @@ The application makes use of the JavaScript Web Token for request authtenticatio
 Node.js for high-performing and compact back-end server.
 Bootstrap is used to ensure mobile devices can access the application without UI difficulties.
 Users are granted access to register with the application, only if they hold a pre-generated & valid, college email address.
+'Lecturers' are 'notified' via email, that a 'student' has 'reserved a slot' in a 'Class Lab'.
 
 These are technologies that I have worked with in the past during a previous software engineering internship and education. Working with these technologies was both fun and challenging and allowed me to continously learn. 
 My DevOps knowledge grew (specificlally Apache web server, while attempting AWS and Docker deployments) and I successfully overcame the challenges and blockers that came with deploying a full-stack application on the internet.
 
 ## Application Pages
+Admin 'Lab Resource' View:
 ![Admin View](https://i.imgur.com/L9JoaaA.png)
 
+Admin CRUD View:
+![Admin CURD View](https://i.imgur.com/B0dIG9i.png)
+
+Login View:
+![login View](https://i.imgur.com/GhkUxyK.png)
+
+Register View:
+![Register View](https://i.imgur.com/7uPQYlF.png)
+
+Profile View:
+![Register View](https://i.imgur.com/ILoFoQY.png)
+
+Profile Edit View:
+![Register View](https://i.imgur.com/Y2se0Sn.png)
+
+'Reserve Slot' Notification:
+![Register View](https://i.imgur.com/uCU3cvR.png)
+
 ## Architecture
+Architecture Overview:
 ![Application Architecture](https://i.imgur.com/uErNJBP.png)
 
 ## Use Case
+Use Case showing the different users:
 ![Use Case showing the different users](https://i.imgur.com/YpaW6NB.png)
